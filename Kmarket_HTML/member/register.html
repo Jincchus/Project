@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/member.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    let isUidOk = false;
+    let isPassOk = false;
+    let isNameOk = false;
+    let isNickOk = false;
+    let isEmailOk = false;
+    let isHpOk = false;
+
+    // 데이터 검증에 사용하는 정규표현식
+    let reUid = /^[a-z]+[a-z0-9]{4,19}$/g;
+    let rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
+    let reName = /^[가-힣]{2,10}$/
+    let reNick = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
+    let reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    let reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // 이메일 중복체크
+      document.getElementsByName('km_email')[0].addEventListener('focusout', function () {
+        // 입력 데이터 가져오기
+        const km_email = this.value;
+
+        // 데이터 전송
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/member/register=' + km_email);
+        xhr.send();
+
+        // 응답 결과
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == XMLHttpRequest.DONE) {
+            if (xhr.status == 200) {
+              const data = JSON.parse(xhr.responseText);
+              console.log('data : ' + data);
+
+              const resultEmail = document.getElementById('msgEmail');
+
+              if (data.result >= 1) {
+                resultEmail.innerHTML = '이미 사용중인 이메일 입니다.';
+                resultEmail.style.color = 'red';
+              } else {
+                resultEmail.innerHTML = '사용 가능한 이메일 입니다.';
+                resultEmail.style.color = 'green';
+              }
+            }
+          }
+        }; // onreadystatechange end
+      }); // 이메일 중복체크 끝
+    });
+
+
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="top">
+      <div>
+        <a href="./login.html">로그인</a>
+        <a href="#">회원가입</a>
+        <a href="#">마이페이지</a>
+        <a href="#">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니
+          <span class="material-symbols-outlined"></span>
+        </a>
+      </div>
+    </div>
+    <div class="logo">
+      <div>
+        <a href="">
+          <img src="./image/header_logo.png" alt="헤더 로고" />
+        </a>
+      </div>
+    </div>
+  </header>
+  <main id="member">
+    <div class="register">
+      <nav>
+        <h1>일반 회원가입</h1>
+      </nav>
+      <form action="#" method="POST">
+        <section>
+          <table>
+            <caption>
+              필수 정보입력
+            </caption>
+            <tbody>
+              <tr>
+                <th><span class="essential">*</span>아이디</th>
+                <td>
+                  <input type="text" name="km_uid" placeholder="아이디를 입력" required />
+                  <span class="msgId">영문, 숫자로 4~12자까지 설정해 주세요.</span>
+                </td>
+              </tr>
+              <tr>
+                <th><span class="essential">*</span>비밀번호</th>
+                <td>
+                  <input type="password" name="km_pass" placeholder="비밀번호를 입력" required />
+                  <span class="msgId">영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해
+                    주세요.</span>
+                </td>
+              </tr>
+              <tr>
+                <th><span class="essential">*</span>비밀번호확인</th>
+                <td>
+                  <input type="password" name="km_pass" placeholder="비밀번호를 입력" required />
+                  <span class="msgId">비밀번호 재입력</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <table>
+            <caption>
+              기본 정보입력
+            </caption>
+            <tbody>
+              <tr>
+                <th><span class="essential">*</span>이름</th>
+                <td>
+                  <input type="text" name="km_name" placeholder="이름을 입력" required />
+                </td>
+              </tr>
+              <tr>
+                <th><span class="essential">*</span>성별</th>
+                <td>
+                  <label>
+                    <input type="radio" name="km_gender" value="1" checked />&nbsp;남
+                  </label>
+                  <label>
+                    <input type="radio" name="km_gender" value="2" checked />&nbsp;여
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <th><span class="essential">*</span>EMAIL</th>
+                <td>
+                  <input type="email" name="km_email" placeholder="이메일 입력" required />
+                </td>
+              </tr>
+              <tr>
+                <th><span class="essential">*</span>휴대폰</th>
+                <td>
+                  <input type="text" name="km_hp" maxlength="13" placeholder="휴대폰번호 입력" required />
+                  <span class="msgHp"> - 포함 13자리를 입력하세요.</span>
+                </td>
+              </tr>
+              <tr class="addr">
+                <th>주소</th>
+                <td>
+                  <div>
+                    <input type="text" name="km_zip" id="zip" placeholder="우편번호 입력 클릭" readonly />
+                  </div>
+                  <div>
+                    <input type="text" name="km_addr1" id="addr1" size="50" placeholder="주소를 검색하세요." readonly />
+                  </div>
+                  <div>
+                    <input type="text" name="km_addr2" id="addr2" size="50" placeholder="상세주소를 입력하세요." readonly />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <div>
+          <input type="submit" class="join" value="회원가입" />
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <ul>
+      <li>
+        <a href="#">회사소개</a>
+      </li>
+      <li>
+        <a href="#">서비스이용약관</a>
+      </li>
+      <li>
+        <a href="#">개인정보처리방침</a>
+      </li>
+      <li>
+        <a href="#">전자금융거래약관</a>
+      </li>
+    </ul>
+    <div>
+      <p>
+        <img src="./image/footer_logo.png" alt="푸터 로고" />
+      </p>
+      <p>
+        <strong>(주)KMARKET</strong>
+        <br />부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)
+        <br />대표이사 : 홍길동
+        <br />사업자등록번호 : 220-81-83676 사업자정보확인
+        <br />통신판매업신고 : 강남 10630호 Fax : 02-589-8842
+      </p>
+      <p>
+        <strong>고객센터</strong>
+        <br />Tel : 1234-5678 (평일 09:00~18:00)
+        <br />스마일클럽/SVIP 전용 : 1522-5700 (365일 09:00~18:00)
+        <br />경기도 부천시 원미구 부일로 223(상동) 투나빌딩 6층
+        <br />Fax : 051-123-4567 | Mail : kmarket@kmarket.co.kr
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
