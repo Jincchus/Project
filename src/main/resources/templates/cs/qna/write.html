@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>롯데ON::고객센터</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <div class="top">
+          <div>
+            <p>
+              <a th:href="@{/member/login}">로그인</a>
+              <a th:href="@{/member/join}">회원가입</a>
+              <a href="#">마이페이지</a>
+              <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+            </p>
+          </div>
+        </div>
+        <div class="logo">
+          <div>
+            <a href="#"><img th:src="@{/images/header_logo.png}" alt="로고" />고객센터</a>
+          </div>
+        </div>
+      </header>
+
+      <section id="cs">
+        <div class="qna">
+          <nav>
+            <div>
+              <p>홈<span>></span>문의하기</p>
+            </div>
+          </nav>
+          <section class="write">
+            <aside>
+              <h2>문의하기</h2>
+              <ul>
+                <li class="on"><a href="#">회원</a></li>
+                <li><a href="#">쿠폰/이벤트</a></li>
+                <li><a href="#">주문/결제</a></li>
+                <li><a href="#">배송</a></li>
+                <li><a href="#">취소/반품/교환</a></li>
+                <li><a href="#">여행/숙박/항공</a></li>
+                <li><a href="#">안전거래</a></li>
+              </ul>
+            </aside>
+            <article>
+              <form th:action="@{/qna/write}" method="post" id="sendForm">
+                <input type="hidden" name="uid" th:value="${#authentication.name}">
+                <input type="hidden" name="cate" value="qna">
+                <table>
+                  <tr>
+                    <td>문의유형</td>
+                    <td>
+                      <select id="menu1" name="menu1" >
+                        <option selected value="0" >1차 선택</option>
+                        <option value="회원">회원</option>
+                        <option value="쿠폰/혜택/이벤트">쿠폰/혜택/이벤트</option>
+                        <option value="주문/결제">주문/결제</option>
+                        <option value="배송">배송</option>
+                        <option value="취소/반품/교환">취소/반품/교환</option>
+                        <option value="여행/숙박/항공">여행/숙박/항공</option>
+                        <option value="안전거래">안전거래</option>
+                      </select>
+                      <select id="menu2"  name="menu2" >
+                        <option selected value="0">2차 선택</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>문의제목</td>                  
+                    <td>
+                      <input type="text" name="title" placeholder="제목을 입력하세요."/>
+                    </td>
+                  </tr>                
+                  <tr>
+                    <td>문의내용</td>                  
+                    <td>
+                      <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                    </td>
+                  </tr>
+                </table>
+                <div>
+                  <a th:href="@{/qna/list}" class="btnList">취소하기</a>
+                  <input type="submit" class="btnSubmit" value="등록하기"/>
+                </div>
+              </form>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <footer>
+        <ul>
+          <li><a href="#">회사소개</a></li>
+          <li><a href="#">서비스이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">전자금융거래약관</a></li>
+        </ul>
+        <div>
+          <p><img th:src="@{/images/footer_logo.png}" alt="로고" /></p>
+          <p>
+            <strong>(주)롯데ON</strong><br />
+            서울특별시 송파구 올림픽로 300 롯데월드타워 26층 (역삼동 강남파이낸스센터)<br />
+            대표이사 : 김사무엘상현, 정준호, 강성현<br />
+            사업자등록번호 : 529-85-00774(롯데쇼핑(주) e커머스사업부)<br />
+            통신판매업 신고 : 서울송파 제0158호<br>
+            호스팅 서비스사업자 : 롯데쇼핑(주) e커머스사업부
+          </p>
+          <p>
+            <strong>고객센터</strong><br />
+            Tel : 1899-7000(유료) (평일 09:00~18:00)<br />
+            Fax : 051-123-4567 | E-mail : lotteon@lotte.net<br />
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+  <script>
+    let menu1 = document.getElementById("menu1");
+    let menu2 = document.getElementById("menu2");
+
+    let data = {
+        "0":[],
+        "회원":["가입","탈퇴","회원정보","로그인"],
+        "쿠폰/혜택/이벤트":["쿠폰/할인혜택","포인트","제휴","이벤트"],
+        "주문/결제":["상품","결제","구매내역","영수증/증빙"],
+        "배송":["배송상태/기간", "배송정보확인/변경", "해외배송", "당일배송", "해외직구"],
+        "취소/반품/교환":["반품신청/철회", "반품정보확인/변경", "교환 AS신청/철회", "교환정보확인/변경", "취소신청/철회", "취소확인/환불정보"],
+        "여행/숙박/항공":["여행/숙박", "항공"],
+        "안전거래":["서비스 이용규칙 위반", "지식재산권침해", "법령 및 정책위반 상품", "게시물 정책위반", "직거래/외부거래유도", "표시광고", "청소년 위해상품/이미지"]
+    }
+    // 메뉴1 값 바뀌면 해당값의 data키 리스트를 순회하며 값을 만든당.
+    menu1.addEventListener("change",(e)=>{
+        while(menu2.firstChild){
+            menu2.firstChild.remove();
+        }
+        let newOptionsString = "<option value=0>2차선택</option>";
+        data[e.target.value].forEach(el => {
+            newOptionsString +="<option value="+el+">"+el+"</option>";
+        });
+        menu2.innerHTML = newOptionsString;
+    })
+    //작성완료 버튼을 누를 때
+        $('.btnSubmit').click(function(e){
+            e.preventDefault();
+            const menu1 = $('#menu1').val();
+            const menu2 = $('#menu2').val();
+            console.log("menu1 :" + menu1);
+            console.log("menu2 :" + menu2);
+
+            var confirm= true;
+            if(menu1==0){
+                alert('1차 카테고리를 선택하시오.');
+                confirm = false;
+            }else if(menu2==0){
+                alert('2차 카테고리를 선택하시오.');
+                confirm = false;
+            }
+            if(confirm==true){
+                $('#sendForm').attr("th:action","@{/cs/qna/write}");
+                $('#sendForm').submit();
+            }
+        });
+  </script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside th:fragment="admin_aside">
+    <!-- Global Navigation Bar -->
+    <ul id="gnb">
+        <li>
+            <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
+            <ol>
+                <li><a href="#">기본환경설정</a></li>
+                <li><a href="#">배너관리</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-store" aria-hidden="true"></i>상점관리</a>
+            <ol>
+                <li><a href="#">판매자현황</a></li>
+                <li><a href="#">재고관리</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-users" aria-hidden="true"></i>회원관리</a>
+            <ol>
+                <li><a href="#">회원현황</a></li>
+                <li><a href="#">포인트관리</a></li>
+                <li><a href="#">비회원관리</a></li>
+                <li><a href="#">접속자집계</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
+            <ol>
+                <li><a th:href="@{/admin/product/list}">상품목록</a></li>
+                <li><a th:href="@{/admin/product/register}">상품등록</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>주문관리</a>
+            <ol>
+                <li><a href="#">주문현황</a></li>
+                <li><a href="#">매출현황</a></li>
+                <li><a href="#">결제관리</a></li>
+                <li><a href="#">배송관리</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
+            <ol>
+                <!--
+                롯데ON 쇼핑몰 스토리보드 v1.4 35p
+                고객센터 카테고리에 맞춰서 게시판 항목을 공지사항, 자주 묻는 질문, 문의하기로 변경
+                -->
+                <li><a th:href="@{/admin/cs/notice/list}">-공지사항</a></li>
+                <li><a th:href="@{/admin/cs/faq/list}">-자주묻는질문</a></li>
+                <li><a th:href="@{/admin/cs/qna/list}">-문의하기</a></li>
+
+            </ol>
+        </li>
+    </ul>
+</aside>
+</body>
+</html>

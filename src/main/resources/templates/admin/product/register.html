@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+    <div id="admin-wrapper">
+        <header th:replace="~{fragments/header::admin_header}">
+            <div>
+                <a th:href="@{/admin/index}" class="logo"><img th:src="@{/images/admin/admin_logo.png}" alt="admin_logo"/></a>
+                <p>
+                    <span>홍길동님 반갑습니다.</span>
+                    <a href="#">HOME |</a>
+                    <a href="#">로그아웃 |</a>
+                    <a href="#">고객센터</a>
+                </p>
+            </div>
+        </header>
+        <main>
+            <aside th:replace="~{fragments/admin/aside::admin_aside}">
+            </aside>
+            <section id="admin-product-register">
+                <nav>
+                    <h3>상품등록</h3>
+                    <p>
+                        HOME > 상품관리 > <strong>상품등록</strong>
+                    </p>
+                </nav>
+                <!-- 상품등록 컨텐츠 시작 -->
+                <article>
+                    <form th:action="@{/admin/product/register}" method="post" th:object="${productInfo}" enctype="multipart/form-data">
+                        <!-- 상품분류 -->
+                        <section>
+                            <h4>상품분류</h4>
+                            <p>
+                                기본분류는 반드시 선택하셔야 합니다. 하나의 상품에 1개의 분류를 지정 합니다.
+                            </p>
+                            <table>
+                                <tr>
+                                    <td>1차 분류</td>
+                                    <td>
+                                        <select th:field="*{prodCate1_id}" id="cate1Select" name="prodCate1_id">
+                                            <option value="cate0">1차 분류 선택</option>
+                                            <option value="cate11">패션·의류·뷰티</option>
+                                            <option value="cate12">가전·디지털</option>
+                                            <option value="cate13">식품·생필품</option>
+                                            <option value="cate14">홈·문구·취미</option>                                                
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2차 분류</td>
+                                    <td>
+                                        <select th:field="*{prodCate2_id}" id="cate2Select" name="prodCate2_id">
+                                            <option value="cate0">2차 분류 선택</option>
+                                            <option value="cate21">남성의류</option>
+                                            <option value="cate22">여성의류</option>
+                                            <option value="cate23">잡화</option>
+                                            <option value="cate24">뷰티</option>                                                
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </section>
+                        <input type="hidden" th:value="${#authentication.principal}" name="seller_id"/>
+                        <!-- 기본정보 -->
+                        <section>
+                            <h4>기본정보</h4>
+                            <p>
+                                기본정보는 반드시 입력해야 합니다.
+                            </p>
+                            <table>
+                                <tr>
+                                    <td>상품명</td>
+                                    <td><input th:field="*{prodName}" type="text" name="#"/></td>
+                                </tr>
+                                <tr>
+                                    <td>기본설명</td>
+                                    <td>
+                                        <span>상품명 하단에 상품에 대한 추가적인 설명이 필요한 경우에 입력</span>
+                                        <input th:field="*{descript}" type="text" name="#"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>제조사</td>
+                                    <td><input th:field="*{company}" type="text" name="#"/></td>
+                                </tr>
+                                <tr>
+                                    <td>판매가격</td>
+                                    <td><input th:field="*{price}" type="number" name="#"/>원</td>
+                                </tr>                                    
+                                <tr>
+                                    <td>할인율</td>
+                                    <td>
+                                        <span>0을 입력하면 할인율 없음</span>
+                                        <input th:field="*{discount}" type="number" name="#"/>원
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>포인트</td>
+                                    <td>
+                                        <span>0을 입력하면 포인트 없음</span>
+                                        <input th:field="*{point}" type="number" name="#"/>점
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>재고수량</td>
+                                    <td><input th:field="*{stock}" type="number" name="#"/>개</td>
+                                </tr>
+                                <tr>
+                                    <td>배송비</td>
+                                    <td>
+                                        <span>0을 입력하면 배송비 무료</span>
+                                        <input th:field="*{delivery}" type="number" name="#"/>원
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>상품 썸네일</td>
+                                    <td>
+                                        <span>크기 190 x 190, 상품 목록에 출력될 이미지 입니다. </span>
+                                        <input th:field="*{thumb1}" type="file" name="#"/>
+
+                                        <span>크기 230 x 230, 상품 메인에 출력될 이미지 입니다. </span>
+                                        <input th:field="*{thumb2}" type="file"/>
+
+                                        <span>크기 456 x 456, 상품 상세에 출력될 이미지 입니다. </span>
+                                        <input th:field="*{thumb3}" type="file" name="#"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>상세 상품정보</td>
+                                    <td>
+                                        <span>크기 가로 940px 높이 제약없음, 크기 최대 1MB, 상세페이지 상품정보에 출력될 이미지 입니다.</span>
+                                        <input th:field="*{detail}" type="file" name="#"/>
+                                    </td>
+                                </tr>
+                            </table>                                
+                        </section>
+
+                        <!-- 상품정보 제공 고시 -->
+                        <section>
+                            <h4>상품정보 제공고시</h4>
+                            <p>
+                                [전자상거래에 관한 상품정보 제공에 관한 고시] 항목에 의거 등록해야 되는 정보입니다.
+                            </p>
+                            <table>
+                                <tr>
+                                    <td>상품상태</td>
+                                    <td><input th:field="*{status}" type="text" name="" value="새상품"/></td>
+                                </tr>
+                                <tr>
+                                    <td>부가세 면세여부</td>
+                                    <td><input th:field="*{duty}" type="text" name="" value="과세상품"/></td>
+                                </tr>
+                                <tr>
+                                    <td>영수증발행</td>
+                                    <td><input th:field="*{receipt}" type="text" name="" value="발행가능 - 신용카드 전표, 온라인 현금영수증"/></td>
+                                </tr>
+                                <tr>
+                                    <td>사업자구분</td>
+                                    <td><input th:field="*{bizType}" type="text" name="" value="사업자 판매자"/></td>
+                                </tr>                                
+                                <tr>
+                                    <td>원산지</td>
+                                    <td><input th:field="*{origin}" type="text" name="" value="국내산"/></td>
+                                </tr>                                
+                            </table>                                
+                        </section>
+                        
+                        <input type="submit" value="등록하기"/>
+                    </form>
+                </article>
+
+                <p class="ico alert">
+                    <strong>Warning!</strong>
+                    전자상거래 등에서의 상품 등의 정보제공에 관한 고시에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라 입력할 수 있습니다.
+                </p>
+                <!-- 상품등록 컨텐츠 끝 -->
+            </section>
+        </main>
+        <footer>
+            <div>
+                <p>Copyright ©lotteon.com All rights reserved. ADMINISTRATOR Version 5.4.1.2</p>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    // product cate api 요청
+    let protocol;
+    let rootURL;
+    protocol = window.location.protocol;
+    rootURL = window.location.host;
+    const getAllCate1 = async () => {
+        const apiURL = protocol + "//" + rootURL + "/api/admin/product/fullCate";
+        let response = await fetch(apiURL)
+            .then(res => {
+                return res.json();
+            });
+        let obj = new Object();
+        let cate1Name = "";
+        let curData = [];
+        //Object 순회 할때는 for of로 순회한다.
+        for (const res of response) {
+            cate1Name = res["cate1Name"];
+            curData = res["cate2ListDto"];
+            obj[cate1Name] = curData;
+        }
+        return obj;
+    };
+    //
+    window.onload = async () => {
+        let allCate = await getAllCate1();
+        let renewedCate = new Object();
+        console.log(allCate);
+        const cate1Select = document.getElementById("cate1Select");
+        const cate2Select = document.getElementById("cate2Select");
+
+        // 1차 카테 select 등록 시작
+        let cate1String = "";
+        const keys = Object.keys(allCate);
+        let key = ""
+
+        for (let i=0; i< keys.length; i++) {
+            key = keys[i];
+
+            let keyList = key.split(' ');
+            let cate1Name = keyList[0];
+            let cate1PK = keyList[1];
+
+            renewedCate[cate1PK] = allCate[key];
+
+            cate1String += "<option value='" + cate1PK + "'>"+ cate1Name + "</option>";
+        }
+        cate1Select.innerHTML = cate1String;
+        // 1차 카테 등록 끝
+        cate1Select.addEventListener("change", (e)=>{
+            const key = e.target.value;
+
+            console.log(e.target);
+            const cate2List = renewedCate[key];
+            console.log(cate2List);
+            let cate2String = "";
+            for (let i = 0; i < cate2List.length; i++) {
+                const curCate2 = cate2List[i];
+                cate2String+= "<option value='" + curCate2["cate2Id"] + "'>"+ curCate2["cate2Name"] + "</option>";
+            }
+            cate2Select.innerHTML = cate2String;
+        })
+    }
+</script>
+</html>

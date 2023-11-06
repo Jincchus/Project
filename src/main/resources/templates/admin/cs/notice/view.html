@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="cs">
+      <div class="faq">
+        <nav>
+          <h3>공지사항 보기</h3>
+          <p>
+            HOME > 고객센터 >
+            <strong>공지사항</strong>
+          </p>
+        </nav>
+        <section class="view">
+          <article>
+            <table>
+              <tbody>
+              <tr>
+                <td>
+                  유형
+                </td>
+                <td th:text="${responseDTO.menu1 + '-'+responseDTO.menu2}"></td>
+              </tr>
+              <tr>
+                <td>
+                  제목
+                </td>
+                <td th:text="${responseDTO.title}">개인회원과 법인회원에 차이가 있나요?</td>
+              </tr>
+              <tr>
+                <td>
+                  내용
+                </td>
+                <td th:text="${responseDTO.content}">개인회원은 본인인증, 법인회원은 사업자등록번호를 기준으로 사업자인증 후 가입가능</td>
+              </tr>
+              </tbody>
+            </table>
+            <div>
+              <a th:href="@{/admin/cs/notice/delete(articleId=${responseDTO.articleId})}" class="btnDelete" id="remove">삭제</a>
+              <a th:href="@{/admin/cs/notice/modify(articleId=${responseDTO.articleId})}" class="btnModify">수정</a>
+              <a th:href="@{/admin/cs/notice/list}" class="btnList">목록</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+        ADMINISTRATOR Version 5.4.1.2
+      </p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
