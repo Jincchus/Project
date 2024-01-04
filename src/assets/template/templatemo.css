@@ -1,0 +1,404 @@
+/*
+
+TemplateMo 559 Zay Shop
+
+https://templatemo.com/tm-559-zay-shop
+
+---------------------------------------------
+Table of contents
+------------------------------------------------
+1. Typography
+2. General
+3. Nav
+4. Hero Carousel
+5. Accordion
+6. Shop
+7. Product
+8. Carousel Hero
+9. Carousel Brand
+10. Services
+11. Contact map
+12. Footer
+13. Small devices (landscape phones, 576px and up)
+14. Medium devices (tablets, 768px and up)
+15. Large devices (desktops, 992px and up)
+16. Extra large devices (large desktops, 1200px and up)
+--------------------------------------------- */
+
+/* Typography */
+* {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+  BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+  "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+}
+
+a {
+  text-decoration: none;
+  color: #111;
+}
+
+.h1 {
+  font-size: 48px !important;
+  font-weight: bold !important;
+}
+
+.h2 {
+  font-size: 25px !important;
+  font-weight: 300;
+}
+
+.h3 {
+  font-size: 22px;
+}
+/* General */
+.logo {
+  width: 200px;
+}
+.text-warning {
+  color: #ede861 !important;
+}
+.text-muted {
+  color: #bcbcbc !important;
+}
+.text-success {
+  color: #d62600 !important;
+  font-weight: bold;
+}
+.text-light {
+  color: rgb(0, 0, 0) !important;
+}
+/*footer*/
+.bg-dark {
+  background-color: rgba(151, 81, 81, 0.164) !important;
+}
+.bg-light {
+  background-color: #f9f9f9 !important;
+}
+.bg-black {
+  background-color: rgb(151, 81, 81, 0.164) !important;
+}
+.bg-success {
+  background-color: #d62600 !important;
+}
+.btn-success {
+  background-color: #5cb85c !important;
+  border-color: #5cb85c !important;
+}
+.pagination .page-link:hover {
+  color: #000;
+}
+.pagination .page-link:hover,
+.pagination .page-link.active {
+  background-color: #d62600;
+  color: #fff;
+}
+/* Nav */
+#templatemo_nav_top {
+  min-height: 40px;
+}
+#templatemo_nav_top * {
+  font-size: 0.9em !important;
+}
+
+#templatemo_main_nav .navbar .nav-icon {
+  margin-right: 20px;
+}
+
+/* Hero Carousel */
+#template-mo-zay-hero-carousel {
+  background: #efefef !important;
+}
+/* Accordion */
+.templatemo-accordion a {
+  color: #000;
+}
+.templatemo-accordion a:hover {
+  color: #333d4a;
+}
+/* Shop */
+.shop-top-menu a:hover {
+  color: #69bb7e !important;
+}
+/* Product */
+.product-wap {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.product-wap .product-color-dot.color-dot-red {
+  background: #f71515;
+}
+.product-wap .product-color-dot.color-dot-blue {
+  background: #6db4fe;
+}
+.product-wap .product-color-dot.color-dot-black {
+  background: #000000;
+}
+.product-wap .product-color-dot.color-dot-light {
+  background: #e0e0e0;
+}
+.product-wap .product-color-dot.color-dot-green {
+  background: #d62600;
+}
+.card.product-wap .card .product-overlay {
+  background: rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+.card.product-wap:hover .card .product-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+.card.product-wap a {
+  color: #000;
+}
+#carousel-related-product .slick-slide:focus {
+  outline: none !important;
+}
+#carousel-related-product .slick-dots li button:before {
+  font-size: 15px;
+  margin-top: 20px;
+}
+/* Brand */
+.brand-img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: 0.5s;
+}
+.brand-img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+/* Carousel Hero */
+#template-mo-zay-hero-carousel .carousel-indicators li {
+  margin-top: -50px;
+  background-color: #d62600;
+}
+#template-mo-zay-hero-carousel .carousel-control-next i,
+#template-mo-zay-hero-carousel .carousel-control-prev i {
+  color: #d62600 !important;
+  font-size: 2.8em !important;
+}
+/* Carousel Brand */
+.tempaltemo-carousel .h1 {
+  font-size: 0.5em !important;
+  color: #000 !important;
+}
+/* Services */
+.services-icon-wap {
+  transition: 0.3s;
+}
+.services-icon-wap:hover,
+.services-icon-wap:hover i {
+  color: #fff;
+}
+.services-icon-wap:hover {
+  background: #d62600;
+}
+/* Contact map */
+.leaflet-control a,
+.leaflet-control {
+  font-size: 10px !important;
+}
+.form-control {
+  border: 1px solid #e8e8e8;
+}
+/* Footer */
+#tempaltemo_footer a {
+  font-weight: 600;
+  font-size: 13px;
+  color: black;
+}
+#tempaltemo_footer a:hover {
+  color: #d62600;
+}
+#tempaltemo_footer ul.footer-link-list li {
+  padding-top: 8px;
+}
+#tempaltemo_footer ul.footer-icons li {
+  width: 2.6em;
+  height: 2.6em;
+  line-height: 2.6em;
+}
+#tempaltemo_footer ul.footer-icons li:hover {
+  background-color: #cfd6e1;
+  transition: 0.5s;
+}
+#tempaltemo_footer ul.footer-icons li:hover i {
+  color: #212934;
+  transition: 0.5s;
+}
+#tempaltemo_footer .border-light {
+  font: 100 1em/1 "Font Awesome 6 Pro";
+  font-size: 17px;
+  border-color: #2d343f !important;
+}
+/*
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+*/
+/* Small devices (landscape phones, 576px and up)*/
+.product-wap .h3,
+.product-wap li,
+.product-wap i,
+.product-wap p {
+  font-size: 12px !important;
+}
+.product-wap .product-color-dot {
+  width: 6px;
+  height: 6px;
+}
+
+@media (min-width: 576px) {
+  .tempaltemo-carousel .h1 {
+    font-size: 1em !important;
+  }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  #templatemo_main_nav .navbar-nav {
+    max-width: 450px;
+  }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  #templatemo_main_nav .navbar-nav {
+    max-width: 550px;
+  }
+  #template-mo-zay-hero-carousel .carousel-item {
+    min-height: 30rem !important;
+  }
+  .product-wap .h3,
+  .product-wap li,
+  .product-wap i,
+  .product-wap p {
+    font-size: 18px !important;
+  }
+  .product-wap .product-color-dot {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+}
+
+/* 추가 */
+/* 헤더 로그인/회원가입 버튼 */
+#templatemo_main_nav
+  > div.navbar.align-self-center.d-flex
+  > button.btn.btn-light {
+  border: 1px solid grey;
+  width: 88px;
+}
+#templatemo_main_nav
+  > div.navbar.align-self-center.d-flex
+  > button.btn.btn-danger {
+  margin-left: 10px;
+}
+
+/* body 타이틀 */
+#title1 {
+  padding-top: 20px;
+  font-size: 30px;
+}
+#titie2 {
+  color: black;
+  text-decoration: none;
+}
+
+#title3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+.btnNotice {
+  line-height: 1;
+  background-color: #d62600;
+  color: #fff;
+  margin-top: auto;
+  align-items: center;
+  border: unset;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  vertical-align: top;
+}
+/*btn 스타일*/
+.bi {
+  text-align: center;
+}
+
+/*footer*/
+#tempaltemo_footer > div.w-100.bg-black.py-3 > div > div {
+}
+#tempaltemo_footer > div.w-100.bg-black.py-3 > div > div > img {
+  width: 100px;
+  float: left;
+  margin-top: -10px;
+}
+#tempaltemo_footer > div.w-100.bg-black.py-3 > div > div > #footerInfo {
+  width: auto;
+  color: rgb(80, 79, 79);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/*마커숨기기*/
+li[data-bs-target="#template-mo-zay-hero-carousel"] {
+  list-style: none;
+}
+/*index Article*/
+html,
+body {
+  margin-top:0px;
+  height: 100%;
+}
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.card {
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+#heading {
+  font-size: 18px;
+}
+.darkWhite {
+  color: #eaebf9;
+  font-weight: 400;
+}
+#desc {
+  color: black;
+  font-weight: 500;
+}
+.btnArticle {
+  background-color: #fc7979;
+  border-radius: 15px;
+  font-size: 80%;
+}
+.fa {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+.btnArticle:focus {
+  outline: none;
+  box-shadow: none;
+}
+*:focus {
+  outline: none;
+}
+
+/*글쓰기 썸네일 첨부*/
+#exampleFormControlFile1 {
+  font-size: 12px;
+}

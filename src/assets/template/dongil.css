@@ -1,0 +1,224 @@
+.infomation {
+  border-top: 1px solid black;
+  display: flex;
+}
+
+.description {
+  border: 1px solid rgb(128, 128, 128, 0.3);
+  height: auto;
+  position: sticky;
+  top: 0px; /* 원하는 디자인에 맞게 이 값을 조정하세요 */
+  margin-bottom: 10%;
+  border-radius: 3%;
+}
+
+.btn-accept {
+  width: 100%;
+  margin-top: 8%;
+  color: #fff;
+  background-color: #d62600;
+  border: none;
+}
+
+#studyInfo {
+  padding: 5%;
+  height: auto;
+  width: 80%;
+  background-color: #7a7a7a13;
+  margin: auto;
+  border-radius: 5%;
+}
+
+/*아이콘*/
+.icons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.icon-mail {
+  float: left;
+  margin-left: 30px;
+}
+.icon-heart {
+  float: left;
+  margin-left: 10px;
+}
+.icon-angry {
+  float: right;
+  margin-right: 20px;
+}
+
+/* MyStudyPage css */
+
+#events {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.event-list .event-item {
+  padding: 0.7rem 0.7rem;
+  margin: 0 0.9375rem 0.9375rem 0.9375rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+  -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+}
+
+.event-list .event-item.featured {
+  border: 1.5px solid #68cbd7;
+}
+
+.event-list .event-item .event-schedule {
+  color: #3c4142;
+  margin-bottom: 0.625rem;
+}
+
+.event-list .event-item .event-schedule .event-icon {
+  stroke-width: 1px;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0.6875rem 1rem 0 0;
+}
+
+.event-list .event-item .event-schedule .event-month-time span {
+  display: block;
+  text-transform: uppercase;
+}
+
+.event-list .event-item .event-title {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 0.625rem;
+  font-weight: bold;
+  color: #3c4142;
+}
+
+.event-list .event-item .event-title:hover {
+  font-size: 15px;
+  color: #68cbd7;
+  text-decoration: none;
+}
+
+.event-list .event-item .event-content {
+  color: #b1bac5;
+  margin-bottom: 0.625rem;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.event-list .event-item .event-participants {
+  padding: 0;
+  margin: 0;
+}
+
+.event-list .event-item .event-participants .event-user {
+  width: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.event-list .event-item .event-participants .event-user .event-user-pic {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.event-list .event-item .event-participants li + li {
+  margin-left: -10px;
+}
+
+.event-list .event-item .event-participants {
+  flex-direction: row !important;
+}
+.event-list .event-item .event-participants {
+  padding: 0;
+  margin: 0;
+}
+
+.bg-soft-primary {
+  background-color: #dce3fa;
+}
+
+.bg-soft-danger {
+  background-color: #fedce0;
+}
+
+.bg-soft-info {
+  background-color: #d7efff;
+}
+
+.bg-soft-success {
+  background-color: #d1f6f2;
+}
+
+.event-list .event-item .event-schedule,
+.event-list .event-item .event-participants {
+  display: flex !important;
+}
+
+.owl-prev {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  margin-left: 0;
+  display: block !important;
+  background-image: linear-gradient(to right, #f4f7fd) !important;
+}
+
+.owl-prev .owl-nav-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.owl-prev .owl-nav-wrapper svg,
+.owl-prev .owl-nav-wrapper i {
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+}
+
+.owl-next {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block !important;
+  background-image: linear-gradient(to right, #f4f7fd) !important;
+}
+
+.owl-next .owl-nav-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.owl-next .owl-nav-wrapper svg,
+.owl-next .owl-nav-wrapper i {
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+}
+
+.owl-dots .owl-dot.active {
+  background: #757575 !important;
+}
+
+.text-primary,
+.task-list-wrapper .completed .remove {
+  color: #4e73e5 !important;
+}
