@@ -21,7 +21,17 @@ public class Account {
 	private Timestamp createdAt; 
 	
 	// 출금 기능 
+	public void withdraw(Long amount) {
+		// 방어적 코드 작성 - todo
+		this.balance -= amount;
+	}
+	
 	// 입금 기능 
+	public void deposit(Long amount) {
+		this.balance += amount;
+	}
+	
+	
 	// 패스워드 체크 
 	// 잔액 여부 확인 기능 
 	// 계좌 소유자 확인 기능 
