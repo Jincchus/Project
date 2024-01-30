@@ -18,10 +18,6 @@
 	</delete>
 	
 	<select id="findAllByUserId" resultType="com.tenco.bank.repository.entity.Account">
-		select * from account_tb 
-	</select>
-	
-	<select id="findByUserId" resultType="com.tenco.bank.repository.entity.Account">
 		select * from account_tb where user_id = #{userId} 
 	</select>
 	
