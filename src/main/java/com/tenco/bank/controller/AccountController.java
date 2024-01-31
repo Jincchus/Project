@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tenco.bank.dto.AccountSaveFormDto;
+import com.tenco.bank.dto.DepositFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.handler.exception.UnAuthorizedException;
@@ -20,7 +21,6 @@ import com.tenco.bank.service.AccountService;
 import com.tenco.bank.utils.Define;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -163,7 +163,46 @@ public class AccountController {
 		return "redirect:/account/list";
 	}
 	
-	
+
+	// 입금 페이지 요청
+	@GetMapping("/deposit")
+	public String depositPage() {
+		// 1. 인증 검사
+		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
+		if (principal == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
+		}
+
+		return "account/deposit";
+	}
+
+	// 입금 요청 로직
+	@PostMapping("/deposit")
+	public String depositProc(DepositFormDto dto) {
+		// 1. 인증 검사
+		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
+		if (principal == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
+		}
+		
+		// 2. 유효성 검사
+		if(dto.getAmount() == null) {
+			throw new CustomRestfulException(Define.ENTER_YOUR_BALANCE, HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getAmount().longValue() <= 0) {
+			throw new CustomRestfulException(Define.D_BALANCE_VALUE, HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getDAccountNumber() == null || dto.getDAccountNumber().isEmpty()) {
+			throw new CustomRestfulException(Define.ENTER_YOUR_ACCOUNT_NUMBER, HttpStatus.BAD_REQUEST);
+		}
+		
+		// 서비스 호출
+		accountService.updateAccountDeposit(dto, principal.getId());
+		
+		return "redirect:/account/list";
+		
+	}
+
 	
 	
 	
