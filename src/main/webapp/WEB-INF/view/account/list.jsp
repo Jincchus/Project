@@ -30,7 +30,7 @@
 						<tr>
 							<td>${account.id }</td>
 							<td>${account.number}</td>
-							<td>${account.balance }</td>
+							<td>${account.formatBalance() }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

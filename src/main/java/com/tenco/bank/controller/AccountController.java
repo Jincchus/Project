@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tenco.bank.dto.AccountSaveFormDto;
+import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.handler.exception.UnAuthorizedException;
 import com.tenco.bank.repository.entity.Account;
@@ -19,6 +20,8 @@ import com.tenco.bank.service.AccountService;
 import com.tenco.bank.utils.Define;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/account")
@@ -107,4 +110,62 @@ public class AccountController {
 		
 		return "account/list";
 	}
+	
+	// 출금 페이지 요청
+	@GetMapping("/withdraw")
+	public String withdrawPage() {
+		
+		// 인증 검사
+		User principal = (User)session.getAttribute("principal");
+		if(principal == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, 
+											HttpStatus.UNAUTHORIZED);
+		}
+		
+		return "account/withdraw";
+	}
+	
+	// 출금 요청 로직 만들기
+	@PostMapping("/withdraw")
+	public String widthdrawProc(WithdrawFormDto dto) {
+		
+		// 인증 검사
+		User principal = (User)session.getAttribute("principal");
+		if(principal == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, 
+											HttpStatus.UNAUTHORIZED);
+		}
+		
+		// 유효성 검사
+		if(dto.getAmount() == null) {
+			throw new CustomRestfulException("금액을 입력 하시오",
+											HttpStatus.BAD_REQUEST);
+		}
+		
+		if(dto.getAmount().longValue() <= 0) {
+			throw new CustomRestfulException("출금 금액이 0원 이하일 수 없습니다",
+											HttpStatus.BAD_REQUEST);
+		}
+		
+		if(dto.getWAccountNumber() == null || dto.getWAccountNumber().isEmpty()) {
+			throw new CustomRestfulException("계좌번호를 입력 하시오",
+											HttpStatus.BAD_REQUEST);
+		}
+		
+		if(dto.getWAccountPassword() == null || dto.getWAccountPassword().isEmpty()) {
+			throw new CustomRestfulException("계좌 비밀번호를 입력 하시오",
+					HttpStatus.BAD_REQUEST);
+		}
+		
+		// 서비스 호출
+		accountService.updateAccountWithdraw(dto, principal.getId());
+		
+		return "redirect:/account/list";
+	}
+	
+	
+	
+	
+	
+	
 }

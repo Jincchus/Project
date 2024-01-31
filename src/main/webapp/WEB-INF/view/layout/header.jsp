@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>my bank</title>
+	<title class="title">my bank</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet"
@@ -29,7 +29,7 @@
 		<p>최첨단 은행 관리 시스템</p>
 	</div>
 
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark menu--line">
 		<a class="navbar-brand" href="#">MENU</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
@@ -76,7 +76,7 @@
 						<a class="nav-link" href="/account/list">계좌 목록</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">출금</a>
+						<a class="nav-link" href="/account/withdraw">출금</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">입금</a>
