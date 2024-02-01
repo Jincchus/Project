@@ -13,7 +13,7 @@
 
 		<br />
 		<!-- if accountList null or not null -->
-		<div class="table--back">
+		<div class="table--back text-center">
 			
 				<table class="table text-center table--1 table-fixed w-full border-separate rounded-[20px] overflow-hidden">
 					<thead class="table--2">

@@ -17,15 +17,15 @@
 			<c:choose>
 
 				<c:when test="${accountList != null }">
-					<table class="table">
-						<thead>
+					<table class="table text-center table--1 table-fixed w-full border-separate rounded-[20px] overflow-hidden">
+						<thead class="table--2">
 							<tr>
 								<th>번호</th>
 								<th>계좌번호</th>
 								<th>잔액</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="table--2">
 
 							<c:forEach var="account" items="${accountList}">
 								<tr>

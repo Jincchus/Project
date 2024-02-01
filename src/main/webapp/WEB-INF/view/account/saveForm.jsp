@@ -7,7 +7,7 @@
 
 <!-- 메인페이지 -->
 <div class="col-sm-8">
-	<div class="p-md-5 text-center">
+	<div class="p-md-5">
 		<h2>계좌 생성 페이지(인증)</h2>
 		<h5>어서오세요 환영합니다</h5>
 		<form action="/account/save" method="post">
@@ -29,7 +29,7 @@
 					id="balance" value="2000">
 			</div>
 
-			<button type="submit" class="btn btn-primary ">계좌 생성</button>
+			<button type="submit" class="btn btn-primary">계좌 생성</button>
 		</form>
 	</div>
 </div>

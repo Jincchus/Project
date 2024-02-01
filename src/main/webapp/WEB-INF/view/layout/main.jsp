@@ -1,33 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-		<!-- header.jsp -->
-		<%@ include file="/WEB-INF/view/layout/header.jsp" %>
-		<!-- 아래 부터 main 영역으로 사용 예정 -->
-		<div class="col-sm-8">
-			<h2>TITLE HEADING</h2>
-			<h5>Title description, Dec 7, 2017</h5>
-			<div class="fakeimg">Fake Image</div>
-			<p>Some text..</p>
-			<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco.</p>
-			<br>
-			<h2>TITLE HEADING</h2>
-			<h5>Title description, Sep 2, 2017</h5>
-			<div class="fakeimg">Fake Image</div>
-			<p>Some text..</p>
-			<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
-				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco.</p>
+<!-- header -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
+
+<!-- 메인페이지 -->
+<div class="col-sm-8">
+	<div class="p-md-5 text-center">
+		<h2>나의 계좌 목록</h2>
+		<h5>어서오세요 환영합니다</h5>
+
+		<br />
+		<div class="bg-light">
+			<!-- if accountList null or not null -->
 		</div>
 	</div>
+
+</div>
+</div>
+</br>
 </div>
 
-<!-- end of main -->
 
-<!-- footer.jsp -->
-
+<!-- footer -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
