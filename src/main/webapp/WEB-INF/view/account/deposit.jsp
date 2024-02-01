@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <div class="col-sm-8">
-	<div class="bg-light p-md-5">
+	<div class="p-md-5">
 		<h2>입금 페이지(인증)</h2>
 		<h5>어서오세요, 환영합니다.</h5>
 		<form action="/account/deposit" method="post">
@@ -26,6 +26,7 @@
 
 </br>
 </div>
+</br>
 </div>
 
 

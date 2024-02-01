@@ -25,11 +25,10 @@
 <body>
 
 	<div class="jumbotron text-center banner--img" style="margin-bottom: 0">
-		<h1>my bank</h1>
-		<p>최첨단 은행 관리 시스템</p>
+		<img alt="MyBank" src="/images/m-cut.png">
 	</div>
 
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark menu--line">
+	<nav class="navbar navbar-expand-sm menu--line">
 		<a class="navbar-brand" href="#">MENU</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
@@ -41,15 +40,15 @@
 				<c:choose>
 					<c:when test='${principal != null}'>
 						<li class="nav-item">
-							<a class="nav-link" href="/user/logout">로그아웃</a>
+							<a class="nav-link nav-font text-center" href="/user/logout">로그아웃</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item" >
-							<a class="nav-link" href="/user/sign-in">로그인</a>
+							<a class="nav-link nav-font text-center" href="/user/sign-in" >로그인</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/user/sign-up">회원가입</a>
+							<a class="nav-link nav-font text-center" href="/user/sign-up">회원가입</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -60,29 +59,35 @@
 	</nav>
 
 	<div class="container" style="margin-top: 30px">
-		<div class="row">
+		<div class="row aside aside1">
 			<div class="col-sm-4">
-				<h2>About Me</h2>
-				<h5>Photo of me:</h5>
-				<div class="m--profile"></div>
-				<p>중단기 심화 - 은행 관리 시스템 예제</p>
-				<h3>Some Links</h3>
-				<p>Lorem ipsum dolor sit ame.</p>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item">
-						<a class="nav-link" href="/account/save">계좌 생성</a>
+				
+				<div class="nav nav-pills user--info1">
+					<div class="card" style="width: 18rem;">
+					  <img src="/images/m-cut.png" class="card-img-top" alt="...">
+					  <div class="card-body">
+					    <h5 class="card-title">${principal.username }님</h5>
+					    <p class="card-text"> 반갑습니다 </p>
+					  </div>
+					</div>
+				</div>
+
+				<ul class="nav nav-pills flex-column list-group text-center">
+					<li class="list-group-item ">
+						<a class="nav-link nav-font2" href="/account/save">계좌 생성</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/account/list">계좌 목록</a>
+					<li class="list-group-item">
+						<a class="nav-link nav-font2" href="/account/list">계좌 목록</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/account/withdraw">출금</a>
+				
+					<li class="list-group-item">
+						<a class="nav-link nav-font2" href="/account/withdraw">출금</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/account/deposit">입금</a>
+					<li class="list-group-item">
+						<a class="nav-link nav-font2" href="/account/deposit">입금</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">이체</a>
+					<li class="list-group-item">
+						<a class="nav-link nav-font2" href="/account/transfer">이체</a>
 					</li>
 				</ul>
 				<hr class="d-sm-none">

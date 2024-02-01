@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'KartriderExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/KartriderExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+/* 폰트 */
+* {
+	font-family: 'KartriderExtraBold';
+}
+
 
 .banner--img {
 	background-color : #ffff ;
@@ -22,5 +33,62 @@
 }
 
 .menu--line {
-	background-color : #0046ff;
+	background-color : hsla(219, 100%, 50%, 0.8);
+	height: 50px !important;
 }
+.menu--line > a {
+	color : white;
+	font-family: 'KartriderExtraBold' !important;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/KartriderExtraBold.woff2') format('woff2') !important;
+    font-weight: 800 !important;
+    font-style: normal !important;
+}
+
+.nav-font {
+	width : 90px;
+	height : 40px;
+	color : white !important;
+	font-family: 'KartriderExtraBold' !important;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/KartriderExtraBold.woff2') format('woff2') !important;
+    font-weight: 800 !important;
+    font-style: normal !important;
+
+}
+
+.nav-font:hover {
+	font-size :  18px !important;
+}
+
+
+
+/* user-info card */
+.user--info1{
+	margin-bottom: 10px;	
+	padding-bottom : 10px;
+	width : 100%;
+}
+
+.card{
+	width:100% !important;
+	height :50%;
+}
+
+/* aside */
+
+/* 모든 테이블 */
+* > table {
+	border-radius: 16px !important;
+}
+
+* > table >thead >tr> th {
+        background-color: hsla(219, 100%, 62%) !important;
+        color : #ffff;
+        border-collapse: collapse;
+        
+}
+
+*> table > tbody >tr> td {
+	background-color : #ffff !important;
+	color : #0046ff !important;
+}
+
