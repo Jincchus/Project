@@ -9,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.bank.dto.AccountSaveFormDto;
 import com.tenco.bank.dto.DepositFormDto;
+import com.tenco.bank.dto.TransferFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.Account;
+import com.tenco.bank.repository.entity.CustomHistoryEntity;
 import com.tenco.bank.repository.entity.History;
 import com.tenco.bank.repository.interfaces.AccountRepository;
 import com.tenco.bank.repository.interfaces.HistoryRepository;
@@ -68,6 +70,7 @@ public class AccountService {
 	@Transactional
 	public void updateAccountWithdraw(WithdrawFormDto dto, Integer principalId) {
 
+		System.out.println("service 출금시작");
 		// 1
 		Account accountEntity = accountRepository.findByNumber(dto.getWAccountNumber());
 		if (accountEntity == null) {
@@ -100,6 +103,8 @@ public class AccountService {
 		if (rowResultCount != 1) {
 			throw new CustomRestfulException("정상 처리 되지 않았습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		System.out.println("service 출금끝");
 	}
 
 	// 입금 기능 만들기
@@ -111,6 +116,8 @@ public class AccountService {
 	@Transactional
 	public void updateAccountDeposit(DepositFormDto dto, Integer principalId) {
 
+
+		System.out.println("service 입금시작");
 		// 1. 계좌 존재 여부 확인
 		Account accountEntity = accountRepository.findByNumber(dto.getDAccountNumber());
 		if (accountEntity == null) {
@@ -136,6 +143,76 @@ public class AccountService {
 		if (rowResultCount != 1) {
 			throw new CustomRestfulException("정상 처리 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
+		System.out.println("service 입금끝");
+	}
+
+	//	이체 기능만들기
+	//	1. 출금 계좌 존재 여부
+	//	2. 입금 계좌 존재 확인
+	//	3. 출금 계좌 본인 소유 확인
+	//	4. 출금 계좌 비번 확인
+	//	5. 출금 계좌 잔액 확인
+	//	6. 출금 계좌 잔액 객체 수정
+	//	7. 입금 계좌 잔액 객체 수정
+	//	8. 출금 계좌 update
+	//	9. 입금 계좌 update
+	//	10. 거래 내역 등록 처리
+	//	11.트랜잭션 처리
+	@Transactional
+	public void updateAccountTransfer(TransferFormDto dto, Integer principalId) {
+
+		System.out.println("service 이체시작");
+		Account withdrawAccountEntity = accountRepository.findByNumber(dto.getWAccountNumber());
+		Account depositAccountEntity = accountRepository.findByNumber(dto.getDAccountNumber());
+
+//		1.
+		if (withdrawAccountEntity == null) {
+			throw new CustomRestfulException(Define.NOT_EXIST_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+//		2.
+		if (depositAccountEntity == null) {
+			throw new CustomRestfulException("상대방의 계좌 번호가 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+//		3.
+		withdrawAccountEntity.checkOwner(principalId);
+//		4.
+		withdrawAccountEntity.checkPassword(dto.getPassword());
+//		5.
+		withdrawAccountEntity.checkBalance(dto.getAmount());
+//		6.
+		withdrawAccountEntity.withdraw(dto.getAmount());
+//		7.
+		depositAccountEntity.deposit(dto.getAmount());
+//		8.
+		accountRepository.updateById(withdrawAccountEntity);
+//		9.
+		accountRepository.updateById(depositAccountEntity);
+//		10.
+		History history = History.builder().amount(dto.getAmount()) // 이체 금액
+				.wAccountId(withdrawAccountEntity.getId()) // 출금 계좌
+				.dAccountId(depositAccountEntity.getId()) // 입금 계좌
+				.wBalance(withdrawAccountEntity.getBalance()) // 출금 계좌 남은 잔액
+				.dBalance(depositAccountEntity.getBalance()) // 입금 계좌 남은 잔액
+				.build();
+		historyRepository.insert(history);
+
+		System.out.println("service 이체끝");
+	}
+
+	/**
+	 * 단일 계좌 거래 내역 검색(전체, 입금, 출금)
+	 * @param type = [all, deposit, withdraw]
+	 * @param id (account_id)
+	 * @return 동적 쿼리 - List
+	 */
+	public List<CustomHistoryEntity> readHistoryListByAccount(String type, Integer id) {
+		return historyRepository.findByIdHistoryType(type, id);
+	}
+	
+	// 단일 계좌 조회 - AccountByID
+	public Account readByAccountId(Integer id) {
+		return accountRepository.findByAccountId(id);
 	}
 
 }
