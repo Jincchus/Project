@@ -43,12 +43,6 @@ public class AccountController {
 	 */
 	@GetMapping("/save")
 	public String savePage() {
-
-		// 인증 검사
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
 		return "account/saveForm";
 	}
 
@@ -63,9 +57,6 @@ public class AccountController {
 
 		// 인증 검사
 		User principal = (User) session.getAttribute("principal");
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
 
 		// 유효성 검사
 		if (dto.getNumber() == null || dto.getNumber().isEmpty()) {
@@ -93,9 +84,6 @@ public class AccountController {
 	public String listPage(Model model) {
 		// 인증 검사
 		User principal = (User) session.getAttribute("principal");
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
 
 		// 경우의 수 -> 유, 무
 		List<Account> accountList = accountService.readAccountListByUserId(principal.getId());
@@ -112,13 +100,6 @@ public class AccountController {
 	// 출금 페이지 요청
 	@GetMapping("/withdraw")
 	public String withdrawPage() {
-
-		// 인증 검사
-		User principal = (User) session.getAttribute("principal");
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
-
 		return "account/withdraw";
 	}
 
@@ -128,9 +109,6 @@ public class AccountController {
 
 		// 인증 검사
 		User principal = (User) session.getAttribute("principal");
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
 
 		// 유효성 검사
 		if (dto.getAmount() == null) {
@@ -155,12 +133,6 @@ public class AccountController {
 	// 입금 페이지 요청
 	@GetMapping("/deposit")
 	public String depositPage() {
-		// 1. 인증 검사
-		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
-
 		return "account/deposit";
 	}
 
@@ -169,9 +141,6 @@ public class AccountController {
 	public String depositProc(DepositFormDto dto) {
 		// 1. 인증 검사
 		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
 
 		// 2. 유효성 검사
 		if (dto.getAmount() == null) {
@@ -191,25 +160,18 @@ public class AccountController {
 
 	}
 
-//	이체 기능만들기
-//	1. 출금 계좌 존재 여부
-//	2. 입금 계좌 존재 확인
-//	3. 출금 계좌 본인 소유 확인
-//	4. 출금 계좌 비번 확인
-//	5. 출금 계좌 잔액 확인
-//	6. 출금 계좌 잔액 수정
-//	7. 입금 계좌 잔액 수정
-//	8. 거래 내역 등록 처리
-//	9.트랜잭션 처리
-	// 이체 페이지 요청
+	//	이체 기능만들기
+	//	1. 출금 계좌 존재 여부
+	//	2. 입금 계좌 존재 확인
+	//	3. 출금 계좌 본인 소유 확인
+	//	4. 출금 계좌 비번 확인
+	//	5. 출금 계좌 잔액 확인
+	//	6. 출금 계좌 잔액 수정
+	//	7. 입금 계좌 잔액 수정
+	//	8. 거래 내역 등록 처리
+	//	9.트랜잭션 처리
 	@GetMapping("/transfer")
 	public String transferPage() {
-		// 1. 인증 검사
-		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
-
 		return "account/transfer";
 	}
 
@@ -218,9 +180,6 @@ public class AccountController {
 	public String transferProc(TransferFormDto dto) {
 		// 1. 인증 검사
 		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
 
 		// 2. 유효성 검사
 		if (dto.getAmount() == null) {
@@ -251,12 +210,6 @@ public class AccountController {
 	public String detail(@PathVariable Integer id,
 						@RequestParam(name= "type",	defaultValue="all",	required = false) String type ,
 						Model model) {
-		// 인증 검사
-		User principal = (User) session.getAttribute(Define.PRINCIPAL); // 다운 캐스팅
-		if (principal == null) {
-			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
-		}
-		
 		Account account = accountService.readByAccountId(id);
 		
 		// 서비스 호출

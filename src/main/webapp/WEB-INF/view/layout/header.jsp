@@ -66,7 +66,7 @@
 					<div class="card" style="width: 18rem;">
 					  <img src="/images/m-cut.png" class="card-img-top" alt="...">
 					  <div class="card-body">
-					    <h5 class="card-title">${principal.username }님</h5>
+					    <h5 class="card-title">${principal.fullname }${principal.username }님</h5>
 					    <p class="card-text"> 반갑습니다 </p>
 					  </div>
 					</div>
