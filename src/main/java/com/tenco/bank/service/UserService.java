@@ -73,4 +73,13 @@ public class UserService {
 		return userEntity;
 	}
 	
+	
+	// 이메일 중복 체크
+	public int findByEmailCheck(String eMail) {
+
+		System.out.println("userService->findByEmailCheck() start");
+		int result = this.userRepository.findByEmailCheck(eMail);
+		return result;
+	}
+	
 }
