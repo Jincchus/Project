@@ -4,7 +4,6 @@
 <!-- header -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
-
 <!-- 메인페이지 -->
 <div class="col-sm-8">
 	<h2>회원 가입</h2>
@@ -28,6 +27,7 @@
 		<div class="form-group">
 			<label for="eMail">e-mail:</label> 
 			<input type="text" name="eMail" class="form-control" placeholder="Enter eMail" id="eMail" value="chopoo2001@gmail.com">
+			<input type="button" class="btn btn-primary" id="emailCheck" value="중복 확인"></input>
 		</div>
 				  
 		</br>
@@ -45,10 +45,31 @@
 </br>
 </div>
 
+<script>
 
+// 이메일 중복 검사
+$("#emailCheck").click(function () {
+    $.ajax({
+        url: "/email-check",
+        type: "post",
+        dataType: "json",
+        data: {"eMail": $("#eMail").val()},
+        success: function (data) {
+            if (data >= 1) {
+                alert("이미 존재하는 이메일입니다.");
+            } else {
+                alert("사용 가능한 이메일입니다.");
+            }
+        }
+    })
+});
+</script>
 
 
 
 
 <!-- footer -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+
+
