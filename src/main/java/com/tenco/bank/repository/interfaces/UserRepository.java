@@ -21,4 +21,7 @@ public interface UserRepository {
 	public User findByUsername(String username);
 	public User findByUsernameAndPassword(User user);
 	
+	public int findByEmailCheck(String eMail);
+	
+	
 }

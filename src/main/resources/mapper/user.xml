@@ -36,7 +36,8 @@
 	</select>
 	
 	<!-- 이메일 중복 체크 -->
-	<select id="findByEmailCheck" resultType="com.tenco.bank.repository.entity.User">
+	<select id="findByEmailCheck" resultType="int">
 		select count(*) from user_tb where e_mail = #{eMail}
 	</select>
+	
 </mapper>
