@@ -37,6 +37,9 @@ public class UserService {
 				.username(dto.getUsername())
 				.password(passwordEncoder.encode(dto.getPassword()))
 				.fullname(dto.getFullname())
+				.originFileName(dto.getOriginFileName())
+				.uploadFileName(dto.getUploadFileName())
+				.eMail(dto.getEMail())
 				.build();
 		
 		int result = userRepository.insert(user);

@@ -4,6 +4,10 @@ public class Define {
 
 //  상수
 	public static final String PRINCIPAL = "principal";
+	
+	// 이미지 관련
+	public static final String UPLOAD_FILE_DERECTORY = "C:\\work_spring\\upload";
+	public static final int MAX_FILE_SIZE = 1024 * 1024 * 20; // 20MB
 
 //  Account
 	public static final String EXIST_ACCOUNT = "이미 계좌가 존재합니다.";

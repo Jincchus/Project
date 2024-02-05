@@ -20,6 +20,7 @@
 			<input type="password" name="password" class="form-control" placeholder="Enter password" id="pwd" value="1234">
 		</div>
 		
+		<a href="/user/find-pw">비밀번호 찾기</a>
 		<button type="submit" class="btn btn-primary">로그인</button>
 	</form>
 </div>

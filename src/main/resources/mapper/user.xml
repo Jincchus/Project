@@ -6,8 +6,8 @@
 	<!-- 반드시 세미콜론을 제거해야 함 -->
 	<!-- #{username} 객체에 속성값으로 설정 해야 함 -->
 	<insert id="insert">
-		insert into user_tb(username, password, fullname, created_at)
-		values(#{username}, #{password}, #{fullname}, now())
+		insert into user_tb(username, password, fullname, created_at, origin_file_name, upload_file_name, e_mail)
+		values(#{username}, #{password}, #{fullname}, now(), #{originFileName}, #{uploadFileName}, #{eMail})
 	</insert>
 	
 	<update id="updateById">
@@ -33,5 +33,10 @@
 	
 	<select id="findByUsernameAndPassword" resultType="com.tenco.bank.repository.entity.User">
 		select * from user_tb where username = #{username} and password = #{password}
+	</select>
+	
+	<!-- 이메일 중복 체크 -->
+	<select id="findByEmailCheck" resultType="com.tenco.bank.repository.entity.User">
+		select count(*) from user_tb where e_mail = #{eMail}
 	</select>
 </mapper>
