@@ -33,6 +33,8 @@ public class UserService {
 		
 		// 추가 개념 : 암호화 처리
 		
+		System.out.println("userService createdUser Start");
+		
 		User user = User.builder()
 				.username(dto.getUsername())
 				.password(passwordEncoder.encode(dto.getPassword()))
@@ -41,12 +43,18 @@ public class UserService {
 				.uploadFileName(dto.getUploadFileName())
 				.eMail(dto.getEMail())
 				.build();
-		
-		int result = userRepository.insert(user);
-		if(result != 1) {
-			throw new CustomRestfulException("회원 가입 실패",
-											HttpStatus.INTERNAL_SERVER_ERROR);
+
+		int result = 0;
+		try {
+			result = userRepository.insert(user);
+		} catch (Exception e) {
+			if(result != 1) {
+				throw new CustomRestfulException("회원 가입 실패",
+						HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 		}
+
+		System.out.println("userService createdUser End");
 	}
 	
 	/**
@@ -72,7 +80,6 @@ public class UserService {
 		}
 		return userEntity;
 	}
-	
 	
 	// 이메일 중복 체크
 	public int findByEmailCheck(String eMail) {
