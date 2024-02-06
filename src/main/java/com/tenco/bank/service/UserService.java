@@ -81,6 +81,11 @@ public class UserService {
 		return userEntity;
 	}
 	
+	// 사용자 이름만으로 정보 조회
+	public User readUserByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+	
 	// 이메일 중복 체크
 	public int findByEmailCheck(String eMail) {
 
