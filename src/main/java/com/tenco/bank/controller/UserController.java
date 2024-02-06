@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tenco.bank.dto.KakaoAccount;
 import com.tenco.bank.dto.KakaoProfile;
+import com.tenco.bank.dto.NaverProfile;
 import com.tenco.bank.dto.OAuthToken;
 import com.tenco.bank.dto.SignInFormDto;
 import com.tenco.bank.dto.SignUpFormDto;
@@ -225,9 +225,85 @@ public class UserController {
 									.username("OAuth_" + kakaoProfile.getProperties().getNickname())
 									.fullname("Kakao")
 									.password("asd1234")
-									.eMail("none") // 이메일 로직 다시생각(unique)
+									.eMail(kakaoProfile.getProperties().getNickname()+"email")
 									.build();
 		
+		User oldUser = userService.readUserByUsername(dto.getUsername());
+		// -> 현재 User는 null 상태
+		
+		if(oldUser == null) {
+			userService.createdUser(dto);
+			///////////////////////////////
+			oldUser = new User(); // 객체 생성하지 않으면 아래 oldUser가 null!!
+			oldUser.setUsername(dto.getUsername());
+			oldUser.setFullname(dto.getFullname());
+			oldUser.setEMail(dto.getEMail());
+		}
+		oldUser.setPassword(null);
+		
+		// 로그인 처리
+		httpSession.setAttribute(Define.PRINCIPAL, oldUser);
+		
+		return "redirect:/account/list";
+	}
+
+	// http://localhost:80/user/kakao-callback?code="xxxxx"
+	@GetMapping("/naver-callback")
+	public String naverCallback(@RequestParam String code) {
+		
+		// POST 방식 - Header구성, body구성
+		RestTemplate rt1 = new RestTemplate();
+		// 헤더 구성
+		HttpHeaders headers1 = new HttpHeaders();
+		headers1.add("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+		// 바디 구성
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.add("grant_type", "authorization_code");
+		params.add("client_id", "VDvXzrjcWZiTsSVAyXLb");
+		params.add("client_secret", "mm4rmfYLWr");
+		params.add("code", code);
+		params.add("state", "STATE_STRING");
+		
+		// 헤더, 바디 결합
+		HttpEntity<MultiValueMap<String, String>> reqMsg 
+			= new HttpEntity<>(params, headers1);
+		
+		ResponseEntity<OAuthToken> response
+			= rt1.exchange("https://nid.naver.com/oauth2.0/token",
+						HttpMethod.POST,
+						reqMsg,
+						OAuthToken.class);
+
+		// 다시 요청 - 인증 토큰 -- 사용자 정보 요청
+		RestTemplate rt2 = new RestTemplate();
+		// 헤더
+		HttpHeaders headers2 = new HttpHeaders();
+		headers2.add("Authorization", "Bearer "+ response.getBody().getAccessToken());
+		headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		// 바디 x
+		// 결합 --> 요청
+		HttpEntity<MultiValueMap<String, String>> naverInfo
+			= new HttpEntity<>(headers2);
+		
+		ResponseEntity<NaverProfile> response2
+			= rt2.exchange("https://openapi.naver.com/v1/nid/me",
+					HttpMethod.POST,
+					naverInfo,
+					NaverProfile.class);
+		
+		NaverProfile naverProfile = response2.getBody();
+
+		
+		// 최초 사용자 판단 여부 -- username 존재 여부
+		SignUpFormDto dto = SignUpFormDto.builder()
+									.username("OAuth_N" + naverProfile.getResponse().getName())
+									.fullname("Naver")
+									.password("asd1234")
+									.eMail("oauth"+naverProfile.getResponse().getEmail())
+									.build();
+		
+		System.out.println("naver dto : " +dto);
+
 		User oldUser = userService.readUserByUsername(dto.getUsername());
 		// -> 현재 User는 null 상태
 		

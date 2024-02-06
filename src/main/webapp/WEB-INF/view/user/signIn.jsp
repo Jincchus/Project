@@ -29,7 +29,7 @@
 			<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=0842db6850200ca9991957bd6d138279&redirect_uri=http://localhost/user/kakao-callback">
 				<img alt="" src="/images/kakaotalk_sharing_btn_small.png" width="40" height="40">
 			</a>
-			<a href="#">
+			<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=VDvXzrjcWZiTsSVAyXLb&state=STATE_STRING&redirect_uri=http://localhost/user/naver-callback">
 				<img alt="" src="/images/naver_login_btn.png" width="40" height="40">
 			</a>
 		</div>

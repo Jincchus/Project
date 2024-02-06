@@ -38,6 +38,7 @@
 		  </div>
 		</br>
 		</br>
+		<hr>
 		<button type="submit" class="btn btn-primary">회원가입</button>
 	</form>
 </div>
