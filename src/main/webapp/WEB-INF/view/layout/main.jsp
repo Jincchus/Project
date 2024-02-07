@@ -23,8 +23,8 @@
 					<h5>당신의 모든 일이 바뀌고 있습니다</h5>
 				</div>
 				<div class="main--btn">
-					<button>회원가입</button>
-					<button>로그인</button>
+					<button onclick="window.location.href='/user/sign-up'">회원가입</button>
+					<button onclick="window.location.href='/user/sign-in'">로그인</button>
 				</div>
 			</div>
 			<div class="right--div">
