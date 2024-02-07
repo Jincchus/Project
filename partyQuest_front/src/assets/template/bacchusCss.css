@@ -1,0 +1,456 @@
+/* createStudy */
+#sectionLine {
+  width: 100%;
+  color: black;
+  border: thin solid black;
+}
+#cate1 {
+  margin: 10px;
+}
+#cate2 {
+  margin: 10px;
+}
+#cate3 {
+  margin: 10px;
+}
+#addBtn {
+  margin: 10px;
+}
+#groupLocation1 {
+  margin: 10px;
+}
+#groupLocation2 {
+  margin: 10px;
+}
+#verification {
+  float: left;
+  margin: 10px;
+}
+#verificationSwitch {
+  margin: 10px;
+}
+#personnel {
+  margin: 10px;
+}
+
+#groupHead {
+  background-color: rgb(223, 80, 80, 0.4);
+  height: 140px;
+}
+#groupHead > label {
+  margin-top: 30px;
+  margin-left: 20px;
+  color: white;
+}
+#StudyGroup {
+  margin-left: 20px;
+  color: white;
+}
+.createStudyTilte > label {
+  color: 212529 !important;
+}
+.form-main {
+  font-size: 20px;
+  font-weight: bold;
+}
+.main-text {
+  font-size: 17px;
+  color: rgb(139, 139, 139);
+}
+.subtext {
+  font-size: 12px;
+  color: rgb(139, 139, 139);
+  padding-bottom: 10px;
+}
+.party-count {
+  padding-left: 30%;
+}
+.short-input {
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  text-align: center;
+  padding: 5px;
+}
+
+#memberNum > li {
+  margin-bottom: 5px;
+}
+
+/* Profile */
+.set-date {
+  margin: 10px;
+}
+.set-date > span {
+  margin-right: 20px;
+}
+.set-date > span > input {
+  width: 200px;
+  margin-left: 15px;
+}
+#memberNum {
+  padding-top: 7px;
+}
+#message {
+  resize: none;
+  height: 400px;
+}
+#profileMain {
+  border-bottom: solid 1px gray;
+}
+#profileMain > div {
+  display: inline-block;
+  float: left;
+}
+#pictureDiv {
+  width: 20%;
+  border-right: solid 1px gray;
+}
+#profileMainSection {
+  width: 80%;
+  height: 50px;
+  border-bottom: solid 1px gray;
+}
+#myPicture {
+  overflow: hidden;
+  margin: 15px;
+  border-radius: 70%;
+}
+#nickName {
+  font-size: 30px;
+}
+#profileSec {
+  margin-top: 20px;
+}
+#introBox {
+  float: left;
+}
+#insertIntro {
+  float: left;
+}
+#insertBtn {
+  margin-left: 10px;
+}
+#portfolioBox {
+  float: left;
+}
+#pfInsertBtn {
+  margin-left: 10px;
+}
+#registerDiv {
+  margin: 0 auto;
+}
+.rowCreate > * {
+  flex-shrink: 0;
+  width: 50%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) / 2);
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  margin-top: var(--bs-gutter-y);
+}
+#registerSec {
+  margin: 0 auto;
+}
+
+#createCharacter {
+  width: 200%;
+}
+
+#registerTerm {
+  margin-top: 5px;
+  font-size: 10px !important;
+}
+#registerTerm > * {
+  font-size: 10px !important;
+}
+#termsSpan {
+  font-size: 11px !important;
+}
+/* Study View Party Member Introduce */
+#partyMemberMain {
+}
+
+#partyMemberMain > div {
+  display: inline-block;
+  float: left;
+}
+
+#partyMemberPicture {
+  width: 20%;
+}
+#partyMemberPicture > img {
+  overflow: hidden;
+  margin: 15px;
+  border-radius: 70%;
+}
+#partyMemberProfileName {
+  width: 80%;
+}
+#viewTitle > div {
+  display: inline-block;
+  float: left;
+}
+#hostProfile {
+  width: 50%;
+  float: left;
+  overflow: hidden;
+}
+#myPicture {
+  width: 150px;
+  height: 150px;
+}
+#hostProfile > div {
+  display: inline-block;
+  float: left;
+}
+#titleThumb {
+  width: 400px;
+  height: 300px;
+  float: left;
+  overflow: hidden;
+}
+#titleThumb > img {
+  width: 400px;
+  height: 300px;
+}
+
+#hostPicture {
+  width: 30%;
+}
+#viewTitle {
+  height: 20px;
+  float: left;
+}
+#viewInfo {
+  width: 30%;
+  height: 50px;
+  float: left;
+}
+#hostNick {
+  margin-left: 30%;
+  margin-top: -15%;
+}
+#wantSkill {
+  clear: left;
+}
+
+/*간편회원가입 아이콘*/
+.google {
+  padding-right: 5px;
+  width: 50px;
+}
+.kakao {
+  border: 1px solid gray;
+  border-radius: 18%;
+  width: 45px;
+}
+
+/*Login*/
+#loginDiv {
+  margin: 0 auto;
+  width: 300px;
+}
+#loginSec {
+  margin: 0 auto;
+}
+
+/* Terms */
+.terms {
+  margin: 10px;
+}
+.terms > h1 {
+  font: 32px bold;
+}
+
+.terms > h2 {
+  font: 24px bold;
+}
+
+.terms > p {
+  font-size: 16px;
+  margin-top: 3px;
+}
+
+.termsTable {
+  border-collapse: collapse;
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-color: gray;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  table-layout: fixed;
+  border-bottom: 1px solid #dbdbdb;
+}
+.termsTable > thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.termsTable > thead > th {
+  padding: 14px 0;
+  text-align: center;
+  background-color: #ddd;
+  font-weight: 700;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.termsTable > tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.termsTable > tbody > td {
+  padding: 12px 0;
+  text-align: center;
+  font-size: 87.5%;
+  color: #333;
+}
+
+/* StudyView */
+#studyBase {
+  height: 522px;
+}
+#studyHostInfo {
+  margin-left: 7%;
+}
+#hostAvatar {
+  border-radius: 70%;
+  width: 200px;
+  height: 200px;
+}
+#viewHostNickBio {
+  padding-top: 13%;
+}
+#memberAvatar {
+  border-radius: 70%;
+  overflow: hidden;
+}
+#skillSection {
+  width: 700px;
+}
+#memberImg {
+}
+
+
+/* Community */
+* {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+  BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+  "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+#main {
+  min-height: 800px;
+}
+*, :after, :before {
+  box-sizing: inherit;
+}
+main {
+  display: block;
+}
+/*왼쪽 어사이드*/
+.community-left-side {
+  margin-top: 44px;
+  margin-right: 40px;
+  width: 168px;
+}
+.community-body__navigation {
+  flex: 1 0 172px;
+  max-width: 172px;
+}
+ol, ul {
+  list-style: none;
+}
+.community-aside__group:first-of-type {
+  margin-top: 0;
+}
+.community-aside__group-name {
+  margin-bottom: 1em;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #adb5bd;
+}
+.community-aside__menu {
+  padding: 0.5em 0.75em;
+}
+.community-aside__menu a {
+  font-size: 17px;
+  color: #343a40;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.community-aside__menu--selected a {
+  font-weight: 700;
+  color: rgba(255, 21, 21, 0.8);
+}
+/*content*/
+.community-body {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 0 32px;
+  max-width: 1200px;
+}
+.community-body__content {
+  padding: 32px 0 64px;
+  max-width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.qnaBtn{
+  border-radius : 2em;
+}
+.qnaList{
+//border-radius : 0%;
+}
+
+/*status 바*/
+.status > div {
+  display : inline-block;
+}
+.ac-button.is-text {
+  border: unset;
+  background-color: unset;
+  color: #495057;
+  font-weight: 500;
+}
+.ac-button.is-md {
+  padding: 0 12px;
+  height: 40px;
+  line-height: 1.43;
+  font-size: 14px;
+  letter-spacing: -.3px;
+}
+.ac-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  line-height: 1.47;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-appearance: none;
+  padding: 0 12px;
+  height: 40px;
+  line-height: 1.43;
+  font-size: 14px;
+  letter-spacing: -.3px;
+  border: 1px solid;
+  color: #fff;
+}
+
+/* 오른쪽 어사이드 */
+sec{
+  margin-left : 4%;
+  margin-top : 5%
+}
+
+.QRA1 {
+  margin-bottom : 5%;
+}
