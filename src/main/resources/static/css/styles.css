@@ -9,6 +9,30 @@
 	font-family: 'KartriderExtraBold';
 }
 
+/* 메인 */
+.main--page{
+	background-color : hsla(219, 80%, 95%, 1);
+}
+.main--section{
+	display: flex;
+	justify-content: center;
+}
+
+.main--btn > button {
+	width : 180px;
+	height : 75px;
+	border-radius : 20px;
+	font-size : 30px;
+	background-color: #ffff;
+	margin-top : 10%;
+	margin-right : 10px;
+}
+.main--mybank{
+	color : #0046ff;
+}
+.left--div{
+	margin-top:5%;
+}
 
 .banner--img {
 	background-color : #ffff ;

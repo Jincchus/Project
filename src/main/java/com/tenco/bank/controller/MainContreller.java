@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
-@RequestMapping("/layout")
+@RequestMapping
 public class MainContreller {
 	@GetMapping({"/", "/main"})
 	public String mainPage() {

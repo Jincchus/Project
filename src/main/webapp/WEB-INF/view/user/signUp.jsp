@@ -63,7 +63,7 @@ $("#emailCheck").click(function () {
             }
         }
     })
-});
+})
 </script>
 
 
