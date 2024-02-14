@@ -71,6 +71,3 @@ local.properties
 
 ## jwt ##
 application-secret.yml
-
-
-g
