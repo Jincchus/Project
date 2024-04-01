@@ -1,0 +1,497 @@
+/*** join.html ***/
+#member {
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+#member>.join {
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/*케이마켓에 오신것을 환영합니다.*/
+#member>.join>.welcome {
+    display: block;
+    margin: 10px auto;
+}
+
+/*구매회원, 판매회원 사진 영역*/
+#member>.join>.type {
+    width: 100%;
+    height: 200px;
+    margin: 60px auto;
+}
+
+/*구매회원, 판매회원 블록 영역 */
+#member>.join>.type>div {
+    width: 420px;
+    height: 100%;
+    border: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/*구매회원 가입*/
+#member>.join .normal {
+    float: left;
+}
+
+/*판매회원 가입*/
+#member>.join .seller {
+    float: right;
+}
+
+#member>.join>.type>div>.txt {
+    padding: 40px;
+}
+
+/*회원가입 버튼*/
+#member>.join>.type>div>.txt>a {
+    float: right;
+}
+
+/*판매회원 가입*/
+#member>.join>.seller {
+    float: right;
+}
+
+/*개인 구매회원, 사업자 판매회원*/
+#member>.join>.type>div>.txt {
+    padding: 40px;
+}
+
+/*혜택 배너*/
+#member>.join .banner {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/*** login.html ***/
+#member {
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+#member>.login {
+    width: 900px;
+    height: auto;
+    margin: 0 auto;
+}
+
+#member>.login>nav {
+    border-bottom: 2px solid #0e6ad3;
+}
+
+#member>.login>nav>h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+#member>.login>form {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 10px;
+    border-bottom: 1px solid #b3b3b3;
+    padding-top: 60px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+#member>.login>form>table {
+    float: left;
+    border-collapse: collapse;
+    margin-right: 6px;
+}
+
+#member>.login>form>table tr>td:nth-child(1) {
+    font-size: 14px;
+}
+
+#member>.login>form>table>tbody>tr>td {
+    padding: 2px;
+}
+
+#member>.login>form>table input {
+    width: 230px;
+    height: 31px;
+    padding: 0 13px;
+    border: 0;
+    font-size: 12px;
+    color: #0075d4;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px #eee;
+    box-sizing: border-box;
+}
+
+#member>.login>form>input[type="submit"] {
+    float: left;
+    width: 97px;
+    height: 71px;
+    background-image: url(../image/member_btn_login.gif);
+    font-size: 0;
+    border: none;
+}
+
+#member>.login>form>span {
+    clear: left;
+    display: block;
+    margin-top: 100px;
+    margin-left: 86px;
+}
+
+/*휴대폰 번호로 편리하게 로그인 사진*/
+#member>.login>form>.banner {
+    position: absolute;
+    right: 0;
+    top: 16px;
+}
+
+/*자동로그인 체크박스*/
+#member>.login>form>span>label {
+    left: 64px;
+    bottom: -20px;
+    color: #676767;
+    margin-right: 2px;
+}
+
+#member>.login>form>span>label>input[type="checkbox"] {
+    margin-right: 4px;
+}
+
+#member>.login>form>span a {
+    display: inline-block;
+    height: 13px;
+    margin: 0;
+    padding: 0 6px;
+    color: #676767;
+    border-left: 1px solid #999;
+}
+
+/*아래쪽 사진 영역*/
+#member>.login>img[alt="banner"] {
+    display: block;
+    margin: 36px auto;
+}
+
+/*** register.html ***/
+#member {
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+#member>.register {
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#member>.register>nav {
+    border-bottom: 2px solid #0e6ad3;
+}
+
+/*일반 회원가입*/
+#member>.register>nav>h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+#member>.register>form>section>table {
+    position: relative;
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px solid #b6bdc7;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#member>.register>form>section>table>caption {
+    text-align: left;
+    font-size: 16px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+#member>.register>form>section>table>tbody>tr>th {
+    width: 200px;
+    padding: 20px 20px;
+    vertical-align: top;
+    background: #f4f6f9;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.4;
+    border-bottom: 1px solid #dfe5ed;
+    word-break: break-word;
+    font-size: 14px;
+}
+
+#member>.register>form>section>table>tbody>tr>td {
+    position: relative;
+    vertical-align: middle;
+    padding: 10px 20px;
+    text-align: left;
+    line-height: 1.4;
+    border-bottom: 1px solid #dfe5ed;
+    word-break: break-word;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#member>.register>form>section>table>tbody>tr>td>input {
+    padding: 0 8px;
+    height: 31px;
+    font-size: 14px;
+    border: 1px solid #dfe5ed;
+    vertical-align: middle;
+}
+
+#member>.register>form>section>table>tbody>tr>th>.essential {
+    color: #ef3f43;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/*성별란*/
+#member>.register table label {
+    display: inline-block;
+    width: 60px;
+    font-size: 17px;
+}
+
+#member>.register table input {
+    padding: 0 8px;
+    height: 31px;
+    font-size: 14px;
+    border: 1px solid #dfe5ed;
+    vertical-align: middle;
+}
+
+#member>.register>form>div>input[type="submit"] {
+    display: block;
+    background: #ef3f43;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 72px;
+    margin: 40px auto;
+    border: 0;
+    outline: 0;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#member>.register>form>section>table>tbody>.addr>th {
+    padding-left: 30px;
+}
+
+#member>.register>form>section>table>tbody>.addr>td {
+    position: relative;
+    vertical-align: middle;
+    padding: 10px 20px;
+    text-align: left;
+    line-height: 1.4;
+    border-bottom: 1px solid #dfe5ed;
+    word-break: break-word;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#member>.register table .addr input {
+    margin-top: 6px;
+    padding: 0 8px;
+    height: 31px;
+    font-size: 14px;
+    border: 1px solid #dfe5ed;
+    vertical-align: middle;
+}
+
+/*** registerSeller.html ***/
+#member {
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+#member>.registerSeller {
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/*판매자 회원가입*/
+#member>.registerSeller>nav {
+    border-bottom: 2px solid #0e6ad3;
+}
+
+#member>.registerSeller>nav>h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+/*필수 정보입력 테이블, 판매자 정보입력 테이블*/
+#member>.registerSeller table {
+    position: relative;
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px solid #b6bdc7;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*필수 정보입력, 판매자 정보입력*/
+#member>.registerSeller>form>section>table>caption {
+    text-align: left;
+    font-size: 16px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+/*아이디*/
+#member>.registerSeller>form>section>table>tbody>tr>th {
+    width: 200px;
+    padding: 20px 20px;
+    vertical-align: top;
+    background: #f4f6f9;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.4;
+    border-bottom: 1px solid #dfe5ed;
+    word-break: break-word;
+    font-size: 14px;
+}
+
+/*빨간색 * */
+#member>.registerSeller table .essential {
+    color: #ef3f43;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/*각각 입력칸*/
+#member>.registerSeller table td {
+    position: relative;
+    vertical-align: middle;
+    padding: 10px 20px;
+    text-align: left;
+    line-height: 1.4;
+    border-bottom: 1px solid #dfe5ed;
+    word-break: break-word;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#member>.registerSeller table input {
+    padding: 0 8px;
+    height: 31px;
+    font-size: 14px;
+    border: 1px solid #dfe5ed;
+    vertical-align: middle;
+}
+
+/*회사 주소*/
+#member>.registerSeller table .addr th {
+    padding-left: 30px;
+}
+
+/*우편번호, 주소, 상세주소 입력*/
+#member>.registerSeller table .addr input {
+    margin-top: 6px;
+}
+
+/*회원가입 버튼 (메인 끝)*/
+#member>.registerSeller form input[type="submit"] {
+    display: block;
+    background: #ef3f43;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 72px;
+    margin: 40px auto;
+    border: 0;
+    outline: 0;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/*** signup.html ***/
+#member {
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+#member>.signup {
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/*약관동의 아래 파란 줄*/
+#member>.signup>nav {
+    border-bottom: 2px solid #0e6ad3;
+}
+
+/*약관 동의*/
+#member>.signup>nav>h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+/*이용약관, 수집동의 글자*/
+#member>.signup h3 {
+    font-size: 14px;
+    margin-top: 26px;
+    margin-bottom: 6px;
+}
+
+/* 빨간색 (필수) 표시 */
+#member>.signup h3>span.essential {
+    color: #ef3f43;
+    margin-right: 5px;
+}
+
+/*약관 출력 박스*/
+#member>.signup textarea {
+    width: 100%;
+    height: 160px;
+    margin-bottom: 10px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    resize: none;
+}
+
+/*동의합니다.*/
+#member>.signup label {
+    float: right;
+    font-size: 14px;
+}
+
+/*체크박스*/
+#member>.signup input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: bottom;
+}
+
+/*(선택) 글자색 */
+#member>.signup h3>span.optional {
+    color: #01c1c4;
+    margin-right: 5px;
+}
+
+/*동의하기 버튼*/
+#member>.signup input.agree {
+    display: block;
+    background: #ef3f43;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 72px;
+    margin: 40px auto;
+    border: 0;
+    outline: 0;
+    border-radius: 2px;
+    cursor: pointer;
+}
