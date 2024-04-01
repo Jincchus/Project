@@ -1,5 +1,9 @@
+<div align=center>
+  
+  ![image](https://github.com/bllor/Project2023/assets/136154061/bebfd6ff-c7af-4240-ae0b-db49c65f8a55)
 
-### My_Bank<br>
+</div>
+
 <h1>🪙프로젝트 소개</h1><br>
 
 은행 웹 어플리케이션
@@ -26,7 +30,8 @@
 
 ### 🌟프로젝트 메인 페이지<br>
 
-![MyBank_Jsp](https://github.com/Jincchus/Project/assets/136421962/7ae8a11a-4929-41f4-b362-50bf7e1bcc57)
+![m-cut](https://github.com/Jincchus/Project/assets/136421962/e434bed7-2cfe-4e94-8305-5cd3e66501ec)
+
 
 ------
 
