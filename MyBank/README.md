@@ -1,15 +1,34 @@
-# mybank
+### My_Bank<br>
 
-프로젝트 기간: 2024년 1월 24일 → 2024년 2월 8일
-프로젝트: 개인 프로젝트
-태그: BOOTSTRAP, CSS, GIT, GITHUB, GRADLE, HTML, JSP, JavaScript, MYSQL, SPRINGBOOT
-프로젝트 주제: 은행 웹 어플리케이션 개발
-개발 인원(역할): 1명 (백엔드, 프론트엔드 개발)
-Github: https://github.com/Jincchus/bank
+은행 웹 어플리케이션
 
-![Untitled](mybank%203918b043520b403bbf67e9ff6308335d/Untitled.png)
+------
 
-### 🎯 결과 및 성과
+### ⏱ 프로젝트 기간<br>
+
+24.01.24~24.02.08
+
+------
+
+### 👫 프로젝트 간단 소개<br>
+
+**[1인개발]jincchus**
+
+1. 화면 구현
+2. USER - 회원가입, 로그인, 로그아웃
+3. HISTORY - 계좌 생성 및 목록
+4. ACCOUNT - 입출금 기능, 이체 기능
+5. Interceptor 및 ExceptionHandler
+
+------
+
+### 🌟프로젝트 페이지 소개<br>
+
+![MyBank_Jsp](https://github.com/Jincchus/Project/assets/136421962/7ae8a11a-4929-41f4-b362-50bf7e1bcc57)
+
+------
+
+### 🎯프로젝트 결과<br>
 
 - OAUTH2.0 API 구현
 - Validation 사용
@@ -19,70 +38,65 @@ Github: https://github.com/Jincchus/bank
 - SESSION에 대한 이해
 - 인터셉터와 ExceptionHandler 사용
 
----
 
-### 📖 내용
+------
 
-- [user] 회원가입 / 로그인
-- [account] 계좌생성 / 계좌리스트 / 입금 / 출금
-- [history] 각 계좌별 입·출금 내역
+### 🌝프로젝트 주요 기능 소개<br>
 
----
+**1.USER**<br>
+-회원가입<br>
+-로그인<br>
+-프로필<br>
+-계정 삭제<br>
+-이용자 목록<br>
+-알림<br>
 
-### 🛠 서비스 환경
+**2.스터디**<br>
+-모임 생성<br>
+-게시글 목록<br>
+-게시글 보기<br>
+-게시글 수정 및 삭제<br>
+-좋아요 및 찜 기능<br>
+-모임 신청<br>
+-모임 승인제<br>
+-모임 대기 명단<br>
+-대기 인원 승낙 및 거절 기능<br>
 
-| 유형 | 구분 | 서비스 배포 환경 |
-| --- | --- | --- |
-| SW | OS | Window10 |
-|  | Browser | Chrome |
-|  | Framework | Spring Boot 3.1.5 |
-|  | Language | Java 17
-Vue.js 3.0.0
-HTML5
-CSS3 |
-|  | Library | tomcat-embed-jasper
-jakarta.servlet.jsp.jstl 2.0.0
-mybatis-spring-boot-starter:2.3.0
-mysql-connector-j
-spring-boot-starter-web
-lombok
-spring-boot-devtools |
-|  | DBMS | MySQL 8.0 |
-|  | Tool | IntelliJ IDEA Community Edition
-HeidSQL
-Git
-Github
-Jira
-Figma
-SLACK |
+**3.커뮤니티**<br>
+-자유·고민·이용후기 게시판 목록<br>
+-게시글 보기 <br>
+-게시글 수정 <br>
+-게시글 삭제<br>
+
+**4.고객센터**<br>
+-공지사항 목록 및 보기<br>
+-자주 묻는 질문 목록 및 보기<br>
+-약관<br>
 
 ### 🙋‍♂️ 구현 기능
 
-| 분류 | 기능 | 상세 |
-| --- | --- | --- |
-| Front | 화면 구현 | 회원가입, 로그인, 입출금, 입출금 내역, 상세 내역 |
-| Back - USER | 회원가입 | - 회원가입 유효성 검사
-- 프로필 사진 업로드 |
-|  | 로그인, 로그아웃 | - 일반 로그인, 로그아웃
-- Kakao OAUTH2 API 이용 로그인, 로그아웃
-- Naver OAUTH2 API 이용 로그인, 로그아웃 |
-| Back - ACCOUNT | 계좌 생성 및 목록 | - SESSION을 이용한 인증검사
-- 계좌 생성
-- 계좌 목록(다중 계좌 검증)
-- 단일 계좌 검색(계좌 상세) |
-|  | 입출금 | - 계좌 존재 여부 확인
-- 본인 계좌 여부 확인
-- 계좌 비밀번호 확인
-- 잔액 여부 확인
-- 출금 처리
-- 거래 내역 등록 |
-|  | 이체 | - 출금 계좌 존재 여부 확인
-- 입금 계좌 존재 확인
-- 출금 계좌 본인 소유 확인
-- 출금 계좌 비밀번호 확인
-- 출금 계좌 잔액 확인 후 수정
-- 입금 계좌 잔액 수정
-- 거래 내역 등록 처리 |
-| Back - Interceptor 및 ExceptionHandler | Interceptor | - session 을 통한 인터셉터 구현 |
-|  | ExceptionHandler | - RestfuleExceptionHandler
-- 일반 예외 Handler |
+| 분류                                               | 기능              | 상세                                                         |
+| -------------------------------------------------- | ----------------- | ------------------------------------------------------------ |
+| Front                                              | 화면 구현         | 회원가입, 로그인, 입출금, 입출금 내역, 상세 내역             |
+| Back - USER                                        | 회원가입          | \- 회원가입 유효성 검사 <br />- 프로필 사진 업로드           |
+|                                                    | 로그인, 로그아웃  | \- 일반 로그인, 로그아웃 <br />- Kakao OAUTH2 API 이용 로그인, 로그아웃 <br />- Naver OAUTH2 API 이용 로그인, 로그아웃 |
+| Back - HISTORY                                     | 계좌 생성 및 목록 | \- SESSION을 이용한 인증검사 <br />- 계좌 생성 <br />- 계좌 목록(다중 계좌 검증) <br />- 단일 계좌 검색(계좌 상세) |
+| Back - ACCOUNT                                     | 입출금            | \- 계좌 존재 여부 확인 <br />- 본인 계좌 여부 확인 <br />- 계좌 비밀번호 확인 <br />- 잔액 여부 확인 <br />- 입금 처리<br />- 출금 처리 <br />- 거래 내역 등록 |
+|                                                    | 이체              | \- 출금 계좌 존재 여부 확인 <br />- 입금 계좌 존재 확인 <br />- 출금 계좌 본인 소유 확인 <br />- 출금 계좌 비밀번호 확인 <br />- 출금 계좌 잔액 확인 후 수정 <br />- 입금 계좌 잔액 수정 <br />- 거래 내역 등록 처리 |
+| Back - <br />Interceptor 및 <br />ExceptionHandler | Interceptor       | \- session 을 통한 인터셉터 구현                             |
+|                                                    | ExceptionHandler  | \- RestfuleExceptionHandler <br />- 일반 예외 Handler        |
+
+------
+
+### 🖥개발 환경<br>
+
+| 유형 | 구분      | 서비스 배포 환경                                             |
+| ---- | --------- | ------------------------------------------------------------ |
+| SW   | OS        | - Window10                                                   |
+|      | Browser   | - Chrome                                                     |
+|      | Framework | - Spring Boot 3.1.5                                          |
+|      | Language  | - Java17 <br />- HTML5 <br />- CSS3                          |
+|      | Library   | - tomcat-embed-jasper <br />- jakarta.servlet.jsp.jstl 2.0.0 <br />- mybatis-spring-boot-starter:2.3.0 <br />- mysql-connector-j <br />- spring-boot-starter-web <br />- lombok <br />- spring-boot-devtools |
+|      | DBMS      | - MySQL 8.0                                                  |
+|      | Tool      | - STS4<br />- Git<br />- Github                              |
+
