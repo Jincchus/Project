@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="admin-faq">
+      <nav>
+        <h3>공지사항</h3>
+        <p>
+          HOME > 고객센터 >
+          <strong>공지사항</strong>
+        </p>
+      </nav>
+      <section>
+        <div>
+          <select name="menu1" id="menu1">
+            <option value="0" th:selected="${menu1 == '0'}" >전체</option>
+            <option value="고객서비스" th:selected="${menu1 == '고객서비스'}">고객서비스</option>
+            <option value="안전거래" th:selected="${menu1 == '안전거래'}" >안전거래</option>
+            <option value="위해상품" th:selected="${menu1 == '위해상품'}" >위해상품</option>
+            <option value="이벤트당첨" th:selected="${menu1 == '이벤트당첨'}" >이벤트당첨</option>
+          </select>
+          <select name="menu2" id="menu2" class="choose">
+            <option value="0" th:selected="${menu2 == '0'}" >2차 선택</option>
+            <option value="안내"th:selected="${menu2 == '안내'}" >안내</option>
+            <option value="발표" th:selected="${menu2 == '발표'}" >발표</option>
+            <option value="점검" th:selected="${menu2 == '점검'}" >점검</option>
+          </select>
+        </div>
+        <table id="tb">
+          <tr>
+            <th>
+              <input type="checkbox" name="all" class="chk" id="all_or_none" >
+            </th>
+            <th>번호</th>
+            <th>1차 유형</th>
+            <th>2차 유형</th>
+            <th>제목</th>
+            <th>조회</th>
+            <th>날짜</th>
+            <th>관리</th>
+          </tr>
+          <th:block th:each="article:${pageResponseDTO.dtoList}">
+            <tr class="row" th:id="row-+${article.articleId}" >
+              <td>
+                <input type="checkbox" class="cs_checkbox" name="articleNo" th:value="${article.articleId}" />
+              </td>
+              <td th:text="${article.articleId}"></td>
+              <td th:text="${article.menu1}"></td>
+              <td th:text="${article.menu2}"></td>
+              <td>
+                <!--TODO: article_id 변경하는 것 -->
+                <a th:href="@{/admin/cs/notice/view(articleId=${article.articleId})}" th:text="${article.title}"></a>
+              </td>
+              <td th:text="${article.hit}"></td>
+              <td th:text="${article.rdate}"></td>
+              <td>
+                <a th:href="@{/admin/cs/notice/delete(articleId=${article.articleId})}" class='remove'>[삭제]</a><br>
+                <a th:href="@{/admin/cs/notice/modify(articleId=${article.articleId})}">[수정]</a>
+              </td>
+            </tr>
+          </th:block>
+        </table>
+        <input type="button" class="delete" id="delete_selected_btn" value="선택삭제" />
+        <a th:href="@{/admin/cs/notice/write}" class="write" id="write">작성하기</a>
+
+        <div class="paging">
+          <th:block th:if="${pageResponseDTO.prev}" >
+            <span class="prev">
+            <a href="#">&nbsp;이전</a>
+            </span>
+          </th:block>
+
+          <span  th:each="num : ${#numbers.sequence(pageResponseDTO.start, pageResponseDTO.end)}"  th:class="num">
+            <th:block th:if="${num>0}" >
+            <a th:href="@{/admin/cs/notice/list(cate=notice, menu1=${menu1}, menu2=${menu2},  pg=${num})}"  th:class="${num == pageResponseDTO.getPg()}?'on' : ''" >[[${num}]]</a>
+            </th:block>
+          </span>
+          <span class="next">
+            <th:block th:if="${num>0}" >
+            <a href="#">다음&nbsp;></a>
+            </th:block>
+          </span>
+        </div>
+      </section>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+        ADMINISTRATOR Version 5.4.1.2
+      </p>
+    </div>
+  </footer>
+</div>
+
+</body>
+<script>
+
+  //선택삭제 버튼 클릭 시 삭제되는 기능 구현
+  //전체선택
+  let checkBoxChildren = document.querySelectorAll(".cs_checkbox");
+  let allOrNone = document.getElementById("all_or_none");
+  allOrNone.addEventListener("click",(e)=>{
+    if(allOrNone.checked){
+      for(const child of checkBoxChildren){
+        child.checked = true;
+      }
+    }else {
+      for(const child of checkBoxChildren){
+        child.checked = false;
+      }
+    }
+  });
+  //전체선택 끝
+  ///////////////////////////
+  ///////////////////////////
+  //선택삭제 요청
+
+  let protocol;
+  let rootURL;
+  protocol = window.location.protocol;
+  rootURL = window.location.host;
+
+  let selectDeleteBtn = document.getElementById("delete_selected_btn");
+  selectDeleteBtn.addEventListener("click",async (e)=>{
+    //step1: delete를 수행할 url로 연결
+    const delURL = protocol+"//"+rootURL+"/admin/cs/notice/delete";
+    //Step2: articleIds로 체크된 aritlce의 번호를 담기
+    let articleIds = [];
+    for (const child of checkBoxChildren){
+      if(child.checked){
+        articleIds.push(child.value);
+      }
+    }
+    //step3 ajax로 요청보내기
+    let data = {articleIds};
+    let options = {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    };//options end
+
+    await fetch(delURL, options).then(()=>{
+      for (const id of articleIds){
+        let target = document.getElementById("row-"+id);
+       console.log("target : "+target.id);
+        target.remove();
+      }
+    });//await end
+
+  })//selectDeleteBtn End
+
+  //1차, 2차 카테고리 출력 및 카테고리 클릭 시 글목록 변경되는 것
+
+  let menu1 = document.getElementById("menu1");
+  let menu2 = document.getElementById("menu2");
+
+  let data = {
+    "0":[],
+    "고객서비스":["안내","발표","점검"],
+    "안전거래":["안내","발표","점검"],
+    "위해상품":["안내","발표","점검"],
+    "이벤트당첨":["안내","발표","점검"]
+  }
+
+
+  menu1.addEventListener("change",()=>{
+    let selectMenu1 = $('#menu1').val();
+    console.log("selectMenu1: "+selectMenu1);
+    location.replace('/admin/cs/notice/list?menu1='+selectMenu1);
+
+  });//menu1 end
+
+  menu2.addEventListener("change",()=>{
+    let selectMenu1 = $('#menu1').val();
+    let selectMenu2 = $('#menu2').val();
+    console.log("selectedMenu1 :"+selectMenu1);
+    console.log("selectedMenu2 :"+selectMenu2);
+    location.replace('/admin/cs/notice/list?menu1='+selectMenu1+'&menu2='+selectMenu2);
+
+
+  });
+
+
+</script>
+
+
+</html>
+<!--cate,menu1,menu2를 조회할 때 사용-->
+<!--let obj = new Object();-->
+<!--let cateName = "";-->
+<!--let menu1Name = "";-->
+<!--let menu2Name = "";-->
+<!--let curData = [];-->
+<!--//Object는 순회할 때 for of를 사용한다.-->
+<!--for (const cateName in response["menuMap1"]) {-->
+
+<!--for (const menu1Name in response["menuMap1"][cateName]) {-->
+<!--for (const menu2Name of response["menuMap1"][cateName][menu1Name]) {-->
+<!--//console.log(menu1Name + " " + menu2Name);-->
+<!--console.log(`${cateName} : ${menu1Name} : ${menu2Name}`);-->
+<!--}-->
+<!--}-->
+<!--}-->
+<!--console.log("cateName :"+cateName);-->
+<!--console.log("menu1Name : "+menu1Name);-->
+<!--console.log("menu2Name : "+menu2Name);-->
+
+
+<!--1,2차 카테고리 가져오기-->
+<!--const getAllCate = async () =>{-->
+<!--const apiURL = protocol+"//"+rootURL+"/api/admin/cs/article/fullCate/notice";-->
+<!--let response = await fetch(apiURL)-->
+<!--.then(res => {-->
+<!--return res.json()-->
+<!--});-->
+<!--console.log(response);-->
+<!--let obj = new Object();-->
+<!--let menu1Name = "";-->
+<!--let menu2Name = "";-->
+<!--let curData = [];-->
+
+<!--for(const res of Object.keys(response)){-->
+<!--menu1Name = res[menu1Name];-->
+<!--const menu2Names = response[res];-->
+<!--console.log("menu1Name : "+menu1Name);-->
+<!--console.log("menu2Name : "+menu2Name);-->
+<!--// console.log("curDate : "+curData);-->
+
+<!--for(menu2Name of menu2Names){-->
+<!--console.log(menu2Name);-->
+<!--}-->
+
+<!--}-->
+<!--console.log("obj : "+obj);-->
+<!--return obj;-->
+
+<!--}//getAllCate end-->

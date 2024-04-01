@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>롯데ON::롯데 온라인 쇼핑몰</title>
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
+  <link rel="stylesheet" th:href="@{/css/common.css}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <script th:src="@{/js/index.js}"></script>
+  <style>
+    #bannerTop {
+      display: none;
+      width: 100%;
+      height: 80px;
+      border-bottom: 1px solid #e9e9e9;
+      box-sizing: border-box;
+    }
+
+    #bannerTop.on {
+      display: block;
+    }
+
+    #bannerTop > article {
+      position: relative;
+      width: 1200px;
+      height: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    #bannerTop > article > .btnClose {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      width: 40px;
+      height: 40px;
+      background-image: url('/images/ico_sprite.png');
+      background-position: -122px -142px;
+      background-color: transparent;
+      font-size: 0;
+      border: none;
+      cursor: pointer;
+    }
+
+  </style>
+  <script>
+    $(function(){
+      $('#bannerTop .btnClose').click(function(){
+        $(this).closest('#bannerTop').removeClass('on');
+      });
+    });
+
+  </script>
+</head>
+<body>
+<div id="bannerTop" class="on" style="background: #e4dfdf;">
+  <article>
+    <a href="#"><img th:src="@{/images/topBanner1.png}"/></a>
+    <button class="btnClose">close</button>
+  </article>
+</div>
+<div id="wrapper">
+  <header th:replace="~{fragments/header::index_header}">
+    <div class="top">
+      <div>
+        <a th:href="@{/member/login}">로그인</a>
+        <a th:href="@{/member/join}">회원가입</a>
+        <!-- admin/index 들어가는 메서드 추가 -->
+        <a th:href="@{/admin/index}">관리자 페이지</a>
+        <a href="#">마이페이지</a>
+        <a href="#"
+        ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+        >&nbsp;장바구니</a
+        >
+      </div>
+    </div>
+    <div class="logo">
+      <div th:text="${#authentication.name}">
+        <a href="#"><img th:src="@{/images/header_logo.png}" alt="로고" /></a>
+        <form action="#">
+          <input type="text" name="search" />
+          <button><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="menu">
+      <div>
+        <ul>
+          <li><a href="#">히트상품</a></li>
+          <li><a href="#">추천상품</a></li>
+          <li><a href="#">최신상품</a></li>
+          <li><a href="#">인기상품</a></li>
+          <li><a href="#">할인상품</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">자주묻는질문</a></li>
+          <li><a href="#">문의하기</a></li>
+          <li><a href="#">고객센터</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- 카테고리/베스트 상품 영역 -->
+    <aside>
+      <!-- 카테고리 -->
+      <ul class="category" id="rootUl">
+        <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
+        <li>
+          <a th:href="@{/product/list(cate1=10,cate2=1)}"><i class="fas fa-tshirt"></i>패션·의류·뷰티<i class="fas fa-angle-right"></i></a>
+          <ol>
+            <li><a th:href="@{/product/list/{cate2}(cate2=${1})}">남성의류</a></li>
+            <li><a th:href="@{/product/list(cate1=10,cate2=2)}">여성의류</a></li>
+            <li><a th:href="@{/product/list(cate1=10,cate2=3)}">잡화</a></li>
+            <li><a th:href="@{/product/list(cate1=10,cate2=4)}">뷰티</a></li>
+          </ol>
+        </li>
+        <li>
+          <a th:href="@{/product/list(cate1=11,cate2=10)}"><i class="fas fa-laptop"></i>가전·디지털<i class="fas fa-angle-right"></i></a>
+          <ol>
+            <li><a th:href="@{/product/list/{cate2}(cate2=${7})}">노트북/PC</a></li>
+            <li><a th:href="@{/product/list(cate1=11,cate2=8)}">가전</a></li>
+            <li><a th:href="@{/product/list(cate1=11,cate2=9)}">휴대폰</a></li>
+            <li><a th:href="@{/product/list(cate1=11,cate2=10)}">기타</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="#"
+          ><i class="fas fa-utensils"></i>식품·생필품<i
+                  class="fas fa-angle-right"
+          ></i
+          ></a>
+          <ol>
+            <li><a href="#">신선식품</a></li>
+            <li><a href="#">가공식품</a></li>
+            <li><a href="#">건강식품</a></li>
+            <li><a href="#">생필품</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="#"
+          ><i class="fas fa-home"></i>홈·문구·취미<i
+                  class="fas fa-angle-right"
+          ></i
+          ></a>
+          <ol>
+            <li><a href="#">가구/DIY</a></li>
+            <li><a href="#">침구·커튼</a></li>
+            <li><a href="#">생활용품</a></li>
+            <li><a href="#">사무용품</a></li>
+          </ol>
+        </li>
+      </ul>
+      <script th:src="@{/js/product/fetchCate.js}"></script>
+
+      <!-- 베스트상품 배너 -->
+      <article class="best">
+        <h1><i class="fas fa-crown"></i>베스트상품</h1>
+        <ol>
+          <li>
+            <a href="#">
+              <div class="thumb">
+                <i>1</i>
+                <img th:src="@{/images/index/패션_의류_뷰티/남성의류/(신세계하남점)올젠 썬번 워싱 코튼 카라니트/300%20(1).jpeg}" alt="item1" />
+              </div>
+              <h2>올젠 썬번 워싱 코튼 카라니트</h2>
+              <div class="org_price">
+                <del>30,000</del>
+                <span>10%</span>
+              </div>
+              <div class="dis_price">
+                <ins>27,000</ins>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="thumb">
+                <i>2</i>
+                <img th:src="@{/images/index/패션_의류_뷰티/남성의류/23FW 헤지스 피즈웜라이트 스몰로고 맨투맨/300%20(1).jpeg}" alt="item1" />
+              </div>
+              <article>
+                <h2>헤지스 피즈웜라이트 스몰로고 맨투맨</h2>
+                <div class="org_price">
+                  <del>30,000</del>
+                  <span>10%</span>
+                </div>
+                <div class="dis_price">
+                  <ins>27,000</ins>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="thumb">
+                <i>3</i>
+                <img th:src="@{/images/index/패션_의류_뷰티/남성의류/by파크랜드 가을오픈티셔츠니트정장아우터/300.jpeg}" alt="item1" />
+              </div>
+              <article>
+                <h2>가을오픈티셔츠니트정장아우터</h2>
+                <div class="org_price">
+                  <del>30,000</del>
+                  <span>10%</span>
+                </div>
+                <div class="dis_price">
+                  <ins>27,000</ins>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="thumb">
+                <i>4</i>
+                <img th:src="@{/images/index/패션_의류_뷰티/남성의류/레노마(남성) FW 가을겨울 고퀄리티 한정수량 콤비 자켓상의/300.jpeg}" alt="item1" />
+              </div>
+              <article>
+                <h2>FW 가을겨울 고퀄리티 한정수량 콤비 자켓상의</h2>
+                <div class="org_price">
+                  <del>30,000</del>
+                  <span>10%</span>
+                </div>
+                <div class="dis_price">
+                  <ins>27,000</ins>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="thumb">
+                <i>5</i>
+                <img th:src="@{/images/index/패션_의류_뷰티/남성의류/마인드브릿지 남성 가을상품 OPEN~ 긴팔셔츠슬랙스맨투맨/300%20(1).jpeg}" alt="item1" />
+              </div>
+              <article>
+                <h2>마인드브릿지 긴팔셔츠슬랙스맨투맨</h2>
+                <div class="org_price">
+                  <del>30,000</del>
+                  <span>10%</span>
+                </div>
+                <div class="dis_price">
+                  <ins>27,000</ins>
+                </div>
+              </article>
+            </a>
+          </li>
+        </ol>
+      </article>
+    </aside>
+    <section>
+      <!-- 슬라이더 영역 -->
+      <section class="slider">
+        <ul>
+          <li>
+            <a href="#"
+            ><img th:src="@{/images/index/메인배너/67dcccc4d05447ab.jpg}" alt="item1"
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+            ><img th:src="@{/images/index/메인배너/mainbanner111.jpg}" alt="item2"
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+            ><img th:src="@{/images/index/메인배너/mainbanner222.jpg}" alt="item3"
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+            ><img th:src="@{/images/index/메인배너/mainbanner333.jpg}" alt="item4"
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+            ><img th:src="@{/images/index/메인배너/mainbanner444.jpg}" alt="item5"
+            /></a>
+          </li>
+        </ul>
+      </section>
+      <!-- 히트상품 영역 -->
+      <section class="hit">
+        <h3><span>히트상품</span></h3>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/패션_의류_뷰티/뷰티/그린티 아미노 수분 클렌징 워터 320mL/300.jpg}" alt="t1" />
+            </div>
+            <h2>그린티 아미노 수분 클렌징 워터 320mL</h2>
+            <p>그린티 아미노 수분 클렌징 워터 320mL</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/휴대폰/갤럭시A34 자급제폰 128G SM-A346N 당일수령택배/300 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>갤럭시A34 자급제폰 128G SM-A346N 당일수령택배</h2>
+            <p>갤럭시A34 자급제폰 128G SM-A346N 당일수령택배</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/휴대폰/갤럭시 S23 울트라 자급제폰 512GB무이자 최대 24개월/300.jpeg}" alt="t1" />
+            </div>
+            <h2>갤럭시 S23 울트라 자급제폰 512GB무이자 최대 24개월</h2>
+            <p>갤럭시 S23 울트라 자급제폰 512GB무이자 최대 24개월</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/노트북/APPLE 2023 맥북프로14 MPHE3KHA (16GB SSD 512GB) -BS/300 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>APPLE 2023 맥북프로14 MPHE3KHA (16GB SSD 512GB) -BS</h2>
+            <p>APPLE 2023 맥북프로14 MPHE3KHA (16GB SSD 512GB) -BS</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span>배송비 2500</span>
+            </div>
+          </a>
+        </article>
+
+      </section>
+      <!-- 추천상품 영역 -->
+      <section class="recommend">
+        <h3><span>추천상품</span></h3>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/노트북/APPLE 2023 맥북프로14 MPHE3KHA (16GB SSD 512GB) -BS/300 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>APPLE 2023 맥북프로14 MPHE3KHA (16GB SSD 512GB) -BS</h2>
+            <p>APPLE 2023 맥북프로14 MPHE3KHA (16GB SSD 512GB) -BS</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span>배송비 2500</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/노트북/ASUS 비보북플립 TN3402QA-LZ118W R5-5600H2IN1윈도11PD충전1610지문인식/280.jpeg}" alt="t1" />
+            </div>
+            <h2>ASUS 비보북플립 TN3402QA-LZ118W R5-5600H2IN1윈도11PD충전1610지문인식</h2>
+            <p>ASUS 비보북플립 TN3402QA-LZ118W R5-5600H2IN1윈도11PD충전1610지문인식</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span>배송비 2500</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/노트북/HP 프로북 470G5 8세대 i5-8250U 램16G SSD 1TB 지포스930MX 윈도우10프로 17인치대화면 사무용 가정용/280 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>HP 프로북 470G5 8세대 i5-8250U 램16G SSD 1TB 지포스930MX 윈도우10프로 17인치대화면 사무용 가정용</h2>
+            <p>HP 프로북 470G5 8세대 i5-8250U 램16G SSD 1TB 지포스930MX 윈도우10프로 17인치대화면 사무용 가정용</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span>배송비 2500</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/노트북/LG전자 LG그램 15ZD90RT-GX56K 990그램 에디션 출시 초슬림초경량 OLED탑재인텔i5스노우화이트/280.jpeg}" alt="t1" />
+            </div>
+            <h2>상품명</h2>
+            <p>간단한 상품 설명</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span>배송비 2500</span>
+            </div>
+          </a>
+        </article>
+      </section>
+      <!-- 최신상품 영역 -->
+      <section class="new">
+        <h3><span>최신상품</span></h3>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/기타/GK707S OfficeMaster 저소음 기계식키보드 (화이트 피치)/300.jpeg}" alt="t1" />
+            </div>
+            <h2>GK707S OfficeMaster 저소음 기계식키보드 (화이트 피치)/300.jpeg</h2>
+            <p>GK707S OfficeMaster 저소음 기계식키보드 (화이트 피치)/300.jpeg</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/기타/C타입아이폰8핀5핀 핸드폰 고속충전기 케이블 -2m/300.jpeg}" alt="t1" />
+            </div>
+            <h2>C타입아이폰8핀5핀 핸드폰 고속충전기 케이블 -2m</h2>
+            <p>C타입아이폰8핀5핀 핸드폰 고속충전기 케이블 -2m</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/기타/BA-R9%20PC방27인치컴퓨터사운드바스피커/300 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>BA-R9%20PC방27인치컴퓨터사운드바스피커</h2>
+            <p>BA-R9%20PC방27인치컴퓨터사운드바스피커</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/기타/ASUS ProArt 지포스 RTX 4070 Ti O12G OC D6X 12GB/300.jpeg}" alt="t1" />
+            </div>
+            <h2>ASUS ProArt 지포스 RTX 4070 Ti O12G OC D6X 12GB</h2>
+            <p>ASUS ProArt 지포스 RTX 4070 Ti O12G OC D6X 12GB</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+      </section>
+      <!-- 할인상품 영역 -->
+      <section class="discount">
+        <h3><span>할인상품</span></h3>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/가전/브라텐 가스그릴/300.jpeg}" alt="t1" />
+            </div>
+            <h2>브라텐 가스그릴</h2>
+            <p>브라텐 가스그릴</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/가전/무선 이유식 다지기 믹서기 600ml/300 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>무선 이유식 다지기 믹서기 600ml</h2>
+            <p>무선 이유식 다지기 믹서기 600ml</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/가전/로헨 대용량 스텐 에어프라이어 16L LA-16L/300 (1).jpeg}" alt="t1" />
+            </div>
+            <h2>로헨 대용량 스텐 에어프라이어 16L LA-16L</h2>
+            <p>로헨 대용량 스텐 에어프라이어 16L LA-16L</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#">
+            <div class="thumb">
+              <img th:src="@{/images/index/가전_디지털/가전/대용량 스텐 에어프라이어 AO-16L/300 (1).jpeg}"/>
+              <img src="https://via.placeholder.com/230x230" alt="t1" />
+            </div>
+            <h2>대용량 스텐 에어프라이어 AO-16L</h2>
+            <p>대용량 스텐 에어프라이어 AO-16L</p>
+            <div class="org_price">
+              <del>30,000</del>
+              <span>10%</span>
+            </div>
+            <div class="dis_price">
+              <ins>27,000</ins>
+              <span class="free">무료배송</span>
+            </div>
+          </a>
+        </article>
+      </section>
+    </section>
+  </main>
+  <footer th:replace="~{fragments/footer::footer}">
+    <ul>
+      <li><a href="#">회사소개</a></li>
+      <li><a href="#">서비스이용약관</a></li>
+      <li><a href="#">개인정보처리방침</a></li>
+      <li><a href="#">전자금융거래약관</a></li>
+    </ul>
+    <div>
+      <p><img th:src="@{/images/footer_logo.png}" alt="로고" /></p>
+      <p>
+        <strong>(주)롯데ON</strong><br />
+        서울특별시 송파구 올림픽로 300 롯데월드타워 26층 (역삼동 강남파이낸스센터)<br />
+        대표이사 : 김사무엘상현, 정준호, 강성현<br />
+        사업자등록번호 : 529-85-00774(롯데쇼핑(주) e커머스사업부)<br />
+        통신판매업 신고 : 서울송파 제0158호<br>
+        호스팅 서비스사업자 : 롯데쇼핑(주) e커머스사업부
+      </p>
+      <p>
+        <strong>고객센터</strong><br />
+        Tel : 1899-7000(유료) (평일 09:00~18:00)<br />
+        Fax : 051-123-4567 | E-mail : lotteon@lotte.net<br />
+      </p>
+    </div>
+  </footer>
+  <button type="button" id="top">상단이동</button>
+</div>
+</body>
+</html>

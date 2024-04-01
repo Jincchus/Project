@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="admin-faq">
+      <nav>
+        <h3>자주묻는질문 목록</h3>
+        <p>
+          HOME > 고객센터 >
+          <strong>자주묻는질문</strong>
+        </p>
+      </nav>
+      <section>
+        <div>
+          <select name="menu1" id="menu1">
+            <option value="0" th:selected="${menu1 == '0'}" >1차 선택</option>
+            <option value="회원" th:selected="${menu1 == '회원'}" >회원</option>
+            <option value="쿠폰/혜택/이벤트" th:selected="${menu1 == '쿠폰/혜택/이벤트'}" >쿠폰/혜택/이벤트</option>
+            <option value="주문/결제" th:selected="${menu1 == '주문/결제'}" >주문/결제</option>
+            <option value="배송" th:selected="${menu1 == '배송'}" >배송</option>
+            <option value="취소/반품/교환" th:selected="${menu1 == '취소/반품/교환'}" >취소/반품/교환</option>
+            <option value="여행/숙박/항공" th:selected="${menu1 == '여행/숙박/항공'}" >여행/숙박/항공</option>
+            <option value="안전거래" th:selected="${menu1 == '안전거래'}" >안전거래</option>
+          </select>
+          <select name="menu2" id="menu2" class="choose">
+            <option value="0">2차 선택</option>
+          </select>
+        </div>
+        <table id="tb">
+          <tr>
+            <th>
+              <input type="checkbox" name="all" class="chk" id="all_or_none" >
+            </th>
+            <th>번호</th>
+            <th>1차 유형</th>
+            <th>2차 유형</th>
+            <th>제목</th>
+            <th>조회</th>
+            <th>날짜</th>
+            <th>관리</th>
+          </tr>
+
+          <th:block th:each="article:${pageResponseDTO.dtoList}">
+            <tr class="row" th:id="row-+${article.articleId}" >
+              <td>
+                <input type="checkbox" class="cs_checkbox" name="articleNo" th:value="${article.articleId}" />
+              </td>
+              <td th:text="${article.articleId}"></td>
+              <td th:text="${article.menu1}"></td>
+              <td th:text="${article.menu2}"></td>
+              <td>
+                <!--TODO: article_id 변경하는 것 -->
+                <a th:href="@{/admin/cs/faq/view(articleId=${article.articleId})}" th:text="${article.title}"></a>
+              </td>
+              <td th:text="${article.hit}"></td>
+              <td th:text="${article.rdate}"></td>
+              <td>
+                <a th:href="@{/admin/cs/faq/delete(articleId=${article.articleId})}" class='remove'>[삭제]</a><br>
+                <a th:href="@{/admin/cs/faq/modify(articleId=${article.articleId})}">[수정]</a>
+              </td>
+            </tr>
+          </th:block>
+
+        </table>
+        <input type="button" class="delete" id="delete_selected_btn" value="선택삭제" />
+        <a th:href="@{/admin/cs/faq/write}" class="write" id="write">작성하기</a>
+
+        <div class="paging">
+          <th:block th:if="${pageResponseDTO.prev}" >
+            <span class="prev">
+            <a href="#">&nbsp;이전</a>
+            </span>
+          </th:block>
+
+          <span  th:each="num : ${#numbers.sequence(pageResponseDTO.start, pageResponseDTO.end)}"  th:class="num">
+            <th:block th:if="${num>0}" >
+            <a th:href="@{/admin/cs/faq/list(cate=faq, menu1=${menu1}, menu2=${menu2},  pg=${num})}"  th:class="${num == pageResponseDTO.getPg()}?'on' : ''" >[[${num}]]</a>
+</th:block>
+</span>
+<span class="next">
+            <th:block th:if="${num>0}" >
+            <a href="#">다음&nbsp;></a>
+            </th:block>
+          </span>
+</div>
+</section>
+</section>
+</main>
+<footer>
+  <div>
+    <p>
+      Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+      ADMINISTRATOR Version 5.4.1.2
+    </p>
+  </div>
+</footer>
+</div>
+</body>
+
+<script>
+
+  let menu1 = document.getElementById("menu1");
+  let menu2 = document.getElementById("menu2");
+
+  let data = {
+    "0":[],
+    "회원":["가입","탈퇴","회원정보","로그인"],
+    "쿠폰/혜택/이벤트":["쿠폰/할인혜택","포인트","제휴","이벤트"],
+    "주문/결제":["상품","결제","구매내역","영수증/증빙"],
+    "배송":["배송상태/기간", "배송정보확인/변경", "해외배송", "당일배송", "해외직구"],
+    "취소/반품/교환":["반품신청/철회", "반품정보확인/변경", "교환 AS신청/철회", "교환정보확인/변경", "취소신청/철회", "취소확인/환불정보"],
+    "여행/숙박/항공":["여행/숙박", "항공"],
+    "안전거래":["서비스 이용규칙 위반", "지식재산권침해", "법령 및 정책위반 상품", "게시물 정책위반", "직거래/외부거래유도", "표시광고", "청소년 위해상품/이미지"]
+  }
+
+  let selectMenu1 = $('#menu1').val();
+  let selectMenu2 = $('#menu2').val();
+
+  menu1.addEventListener("change",()=>{
+    selectMenu1 = $('#menu1').val();
+    location.replace('/admin/cs/faq/list?menu1='+selectMenu1);
+  });//menu1 change end
+  //menu1선택에 따른 menu2의 변경
+  while (menu2.firstChild){//menu2를 초기화 시켜준다.
+    menu2.firstChild.remove();
+  }
+
+  let newOptionsString = "<option value=0 selected>2차선택</option>";
+  console.log("selectMenu1 : "+selectMenu1);
+  data[selectMenu1].forEach(el => {
+    newOptionsString += "<option value='" + el + "' " +">" + el + "</option>";
+
+  });//while end
+  menu2.innerHTML = newOptionsString;
+
+  menu2.addEventListener("change",()=>{
+    selectMenu1 = $('#menu1').val();
+    selectMenu2 = $('#menu2').val();
+    location.replace('/admin/cs/faq/list?menu1='+selectMenu1+'&menu2='+selectMenu2);
+  });//menu2 Change End
+
+  //선택삭제 버튼 클릭 시 삭제되는 기능 구현
+  //전체선택
+  let checkBoxChildren = document.querySelectorAll(".cs_checkbox");
+  let allOrNone = document.getElementById("all_or_none");
+  allOrNone.addEventListener("click",(e)=>{
+    if(allOrNone.checked){
+      for(const child of checkBoxChildren){
+        child.checked = true;
+      }
+    }else {
+      for(const child of checkBoxChildren){
+        child.checked = false;
+      }
+    }
+  });
+  //전체선택 끝
+  ///////////////////////////
+  ///////////////////////////
+  //선택삭제 요청
+
+  let protocol;
+  let rootURL;
+  protocol = window.location.protocol;
+  rootURL = window.location.host;
+
+  let selectDeleteBtn = document.getElementById("delete_selected_btn");
+  selectDeleteBtn.addEventListener("click",async (e)=>{
+    //step1: delete를 수행할 url로 연결
+    const delURL = protocol+"//"+rootURL+"/admin/cs/faq/delete";
+    //Step2: articleIds로 체크된 aritlce의 번호를 담기
+    let articleIds = [];
+    for (const child of checkBoxChildren){
+      if(child.checked){
+        articleIds.push(child.value);
+      }
+    }
+    //step3 ajax로 요청보내기
+    let data = {articleIds};
+    let options = {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    };//options end
+
+    await fetch(delURL, options).then(()=>{
+      for (const id of articleIds){
+        let target = document.getElementById("row-"+id);
+        console.log("target : "+target.id);
+        target.remove();
+      }
+    });//await end
+
+  })//selectDeleteBtn End
+
+</script>
+
+</html>

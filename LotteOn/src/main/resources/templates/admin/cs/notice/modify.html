@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="cs">
+      <div class="faq">
+        <nav>
+          <h3>공지사항 수정</h3>
+          <p>
+            HOME > 고객센터 >
+            <strong>공지사항</strong>
+          </p>
+        </nav>
+        <section class="modify">
+          <article>
+            <form th:action="@{/admin/cs/notice/modify}" method="post">
+              <input type="hidden" name="articleId" th:value="${responseDTO?.articleId}"  />
+              <input type="hidden" name="uid" th:value="${#authentication.principal}" />
+              <input type="hidden" name="cate" value="notice"/>
+              <table>
+                <tbody>
+                <tr>
+                  <td>유형</td>
+                  <td>
+                    <select name="menu1" id="selectBox">
+                      <option value="고객서비스" th:selected="${responseDTO?.menu1  == '고객서비스'}">고객서비스</option>
+                      <option value="안전거래" th:selected="${responseDTO?.menu1  == '안전거래'}">안전거래</option>
+                      <option value="위해상품" th:selected="${responseDTO?.menu1  == '위해상품'}">위해상품</option>
+                      <option value="이벤트당첨" th:selected="${responseDTO?.menu1  == '이벤트당첨'}">이벤트당첨</option>
+                    </select>
+                    <select name="menu2" id="selectBox2" class="choose">
+                      <option value="0">2차 선택</option>
+                      <option value="안내" th:selected="${responseDTO?.menu2  == '안내'}">안내</option>
+                      <option value="발표" th:selected="${responseDTO?.menu2  == '발표'}">발표</option>
+                      <option value="점검" th:selected="${responseDTO?.menu2  == '점검'}">점검</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>제목</td>
+                  <td>
+                    <input type="text" name="title" th:value="${responseDTO?.title}" >
+                  </td>
+                </tr>
+                <tr>
+                  <td>내용</td>
+                  <td>
+                    <textarea name="content" th:text="${responseDTO?.content}"> </textarea>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div>
+                <a th:href="@{/admin/cs/notice/list}" class="btnList">취소하기</a>
+                <input type="submit" class="btnModify" value="수정하기">
+              </div>
+            </form>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+        ADMINISTRATOR Version 5.4.1.2
+      </p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

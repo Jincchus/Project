@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::product_head}">
+</head>
+<body>
+<div id="wrapper">
+    <header th:replace="~{fragments/header::product_header}">
+        <div class="top">
+            <div>
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+                <a href="#">마이페이지</a>
+                <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+            </div>
+        </div>
+        <div class="logo">
+            <div>
+                <a href="#"><img src="../images/header_logo.png" alt="로고" /></a>
+                <form action="#">
+                    <input type="text" name="search"/>
+                    <button><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+        </div>
+        <div class="menu">
+            <div>
+                <ul>
+                    <li><a href="#">히트상품</a></li>
+                    <li><a href="#">추천상품</a></li>
+                    <li><a href="#">최신상품</a></li>
+                    <li><a href="#">인기상품</a></li>
+                    <li><a href="#">할인상품</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">쿠폰존</a></li>
+                    <li><a href="#">사용후기</a></li>
+                    <li><a href="#">개인결제</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main id="product">
+        <aside th:replace="~{fragments/product/aside::product_aside}">
+            <ul class="category">
+                <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
+                <li>
+                    <a href="#"><i class="fas fa-tshirt"></i>패션·의류·뷰티</a>
+                    <ol>
+                        <li><a href="#">남성의류</a></li>
+                        <li><a href="#">여성의류</a></li>
+                        <li><a href="#">잡화</a></li>
+                        <li><a href="#">뷰티</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-laptop"></i>가전·디지털</a>
+                    <ol>
+                        <li><a href="#">노트북/PC</a></li>
+                        <li><a href="#">가전</a></li>
+                        <li><a href="#">휴대폰</a></li>
+                        <li><a href="#">기타</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-utensils"></i>식품·생필품</a>
+                    <ol>
+                        <li><a href="#">신선식품</a></li>
+                        <li><a href="#">가공식품</a></li>
+                        <li><a href="#">건강식품</a></li>
+                        <li><a href="#">생필품</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-home"></i>홈·문구·취미</a>
+                    <ol>
+                        <li><a href="#">가구/DIY</a></li>
+                        <li><a href="#">침구·커튼</a></li>
+                        <li><a href="#">생활용품</a></li>
+                        <li><a href="#">사무용품</a></li>
+                    </ol>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 장바구니 페이지 시작 -->
+        <section class="cart">
+
+            <!-- 제목, 페이지 네비게이션 -->
+            <nav>
+                <h1>장바구니</h1>
+                <p>
+                    HOME > <span>패션·의류·뷰티</span> > <strong>장바구니</strong>
+                </p>
+            </nav>
+
+            <form id="cartForm" th:action="@{/product/order}" method="post">
+                <!-- 장바구니 목록 -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" name="all" id="selectAll"></th>
+                        <th>상품명</th>
+                        <th>총수량</th>
+                        <th>판매가</th>
+                        <th>할인</th>
+                        <th>포인트</th>
+                        <th>배송비</th>
+                        <th>소계</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="empty">
+                        <td colspan="7">장바구니에 상품이 없습니다.</td> <!-- kj if cartNo == 0 -->
+                    </tr>
+                    <th:block th:each="productCart : ${productCarts}">
+                    <tr class="row" th:id="row-+${productCart.cartNo}" >
+                        <td>
+                            <input type="hidden" name="formInfo" th:value="0"/>
+
+                            <input type="hidden" name="uid" th:value="${#authentication.name}">
+                            <input type="hidden" name="prodName" th:value="${productCart.prodName }">
+                            <input type="hidden" name="descript" th:value="${productCart.descript }">
+                            <input type="hidden" name="thumb1" th:value="${productCart.thumb1 }">
+                            <input type="hidden" name="prodNo" th:value="${productCart.prodNo }">
+
+                            <input type="checkbox" name="chkbox" class="chkbox" th:value="${productCart.cartNo}"
+                                   th:data-prodNo="${productCart.prodNo}"
+                                   th:data-price="${productCart.price}"
+                                   th:data-count="${productCart.count}"
+                                   th:data-discount="${productCart.discount}"
+                                   th:data-delivery="${productCart.delivery}"
+                                   th:data-point="${productCart.point}"
+                                   th:data-total="${productCart.total }"
+                            >
+                        </td>
+                        <td>
+                            <article>
+                                <a th:href="@{/product/view/{prodNo}(prodNo=${productCart.prodNo})}"><img th:src="@{/api/product/images/{storedName}(storedName=${productCart.thumb1})}" alt="thumb1"></a>
+                                <div>
+                                    <h2><a th:href="@{/product/view/{prodNo}(prodNo=${productCart.prodNo})}">[[${productCart.prodName}]]</a></h2>
+                                    <p>[[${productCart.descript}]]</p>
+                                </div>
+                            </article>
+                        </td>
+                        <td>[[${productCart.count}]]</td>
+                        <td>[[${#numbers.formatInteger(productCart.price,0,'COMMA')}]]</td>
+                        <td>[[${productCart.discount}]]%</td>
+                        <td>[[${#numbers.formatInteger(productCart.point,0,'COMMA')}]]</td>
+                        <td>[[${#numbers.formatInteger(productCart.delivery,0,'COMMA')}]]</td>
+                        <td>[[${#numbers.formatInteger((productCart.price - (productCart.price * productCart.discount / 100))*productCart.count,0,'COMMA')}]]</td>
+                    </tr>
+                    </th:block>
+
+                    </tbody>
+                </table>
+                <input type="button" name="selectDel" id="selectDel" value="선택삭제">
+
+                <!-- 장바구니 전체합계 -->
+                <div class="total">
+                    <h2>전체합계</h2>
+                    <table border="0">
+                        <tr>
+                            <td>상품수</td>
+                            <td id="cartTotalCount">1</td>
+                        </tr>
+                        <tr>
+                            <td>상품금액</td>
+                            <td id="cartTotalPrice">27,000</td>
+                        </tr>
+                        <tr>
+                            <td>할인금액</td>
+                            <td id="cartTotalDiscount">-1,000</td>
+                        </tr>
+                        <tr>
+                            <td>배송비</td>
+                            <td id="cartTotalDelivery">0</td>
+                        </tr>
+                        <tr>
+                            <td>포인트</td>
+                            <td id="cartTotalPoint">260</td>
+                        </tr>
+                        <tr>
+                            <td>전체주문금액</td>
+                            <td id="cartTotalOrderPrice"></td>
+                        </tr>
+                    </table>
+                    <input type="button" name="orderBtn" id="orderBtn" value="주문하기" />
+                </div>
+
+            </form>
+
+        </section>
+        <!-- 장바구니 페이지 끝 -->
+    </main>
+    <footer th:replace="~{fragments/footer::footer}">
+    </footer>
+    <button type="button" id="top">상단이동</button>
+</div>
+</body>
+<script th:inline="javascript">
+
+    $(document).ready(function (){
+        var uid = $('input[name="uid"]').val();
+
+        // 선택 상품을 담을 배열
+        var selectCartDelete = [];
+        // 초기 로드 시 업데이트 함수 호출
+        updateTotal();
+
+        /* 체크 박스 */
+        // selectAll 체크박스 요소 가져오기
+        let $selectAllCheckbox = $("#selectAll");
+        // 모든 개별 체크박스 요소 가져오기
+        let $checkboxes = $(".chkbox");
+
+        // selectAll 체크박스가 클릭될 때 실행할 함수 정의
+        $selectAllCheckbox.click(function () {
+            // selectAll 체크박스의 상태 가져오기
+            let isChecked = $selectAllCheckbox.prop("checked");
+            $checkboxes.prop("checked",isChecked);
+            updateTotal();
+
+        });
+
+        // 개별 체크박스가 클릭될 때 실행할 함수 정의
+        $checkboxes.click(function () {
+            // 개별 체크박스가 모두 선택되어 있는지 확인
+            let allChecked = true;
+            $checkboxes.each(function (){
+               if (!$(this).prop("checked")){
+                   allChecked = false;
+               }
+            });
+
+            $selectAllCheckbox.prop("checked", allChecked);
+
+            // 업데이트 함수 호출
+            updateTotal();
+        });
+
+        // 선택된 체크박스를 감지하고 합계 계산 및 표시를 업데이트하는 함수
+        function updateTotal() {
+            // 초기화
+            selectCartDelete = [];
+            var cartTotalCount = 0;
+            var cartTotalPrice = 0;
+            var cartTotalDiscount = 0;
+            var cartTotalDelivery = 0;
+            var cartTotalPoint = 0;
+            var cartTotalOrderPrice = 0;
+
+            $(".chkbox:checked").each(function () {
+                var count = parseFloat($(this).data("count"));
+                var price = parseFloat($(this).data("price"));
+                var discount = parseFloat($(this).data("discount"));
+                var delivery = parseFloat($(this).data("delivery"));
+                var point = parseFloat($(this).data("point"));
+                var total = parseFloat($(this).data("total"));
+
+                cartTotalCount += count;
+                cartTotalPrice += (price * count);
+                cartTotalDiscount += ((price * discount) / 100) * count;
+                cartTotalDelivery += delivery;
+                cartTotalPoint += point;
+                cartTotalOrderPrice += total;
+
+                // var product = {
+                //     uid: $(this).siblings('[name="uid"]').val(),
+                //     count: $(this).data("count"),
+                //     price: $(this).data("price"),
+                //     discount: $(this).data("discount"),
+                //     delivery: $(this).data("delivery"),
+                //     point: $(this).data("point"),
+                //     total: $(this).data("total"),
+                //     prodName: $(this).siblings('[name="prodName"]').val(),
+                //     prodNo: parseInt($(this).siblings('[name="prodNo"]').val()),
+                //     descript: $(this).siblings('[name="descript"]').val(),
+                //     thumb1: $(this).siblings('[name="thumb1"]').val()
+                // };
+            });
+            $("#cartTotalCount").text(cartTotalCount + "개");
+            $("#cartTotalPrice").text(cartTotalPrice.toLocaleString() + "원");
+            $("#cartTotalDiscount").text(cartTotalDiscount.toLocaleString() + "원");
+            $("#cartTotalDelivery").text(cartTotalDelivery.toLocaleString() + "원");
+            $("#cartTotalPoint").text(cartTotalPoint.toLocaleString() + "원");
+
+            var totalAmount = cartTotalOrderPrice + cartTotalDelivery;
+            $("#cartTotalOrderPrice").text(totalAmount.toLocaleString() + "원");
+
+        }
+
+        /* delete 작업 */
+        let protocol;
+        let rootURL;
+        protocol = window.location.protocol;
+        rootURL = window.location.host;
+        //
+        // let selectDel = $("#selectDel").click(async function (e) {
+        //     e.preventDefault();
+        //     let cartNos = [];
+        //     for (const child of $checkboxes) {
+        //         if (child.checked) {
+        //
+        //             let cartNo = child.value;
+        //             const data = {
+        //                 "cartNo": cartNo,
+        //             }
+        //             cartNos.push(data);
+        //         }
+        //     }
+        //     const castProducts = async (data)=> {
+        //         const url = protocol + "//" + rootURL + "/product/cart/delete/"+uid;
+        //         const payload = {"cartNos": data}
+        //         await fetch(url, {
+        //             method: "POST",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //             },
+        //             body: JSON.stringify(payload)
+        //         }).then(res => {
+        //             console.log("c2 : then ?" + res);
+        //         });
+        //     }
+        //     console.log(" cartNos : " + cartNos);
+        //     await castProducts();
+        //
+        //     });//await end
+        //
+        //
+        // });
+        let selectDel = document.getElementById("selectDel");
+        selectDel.addEventListener("click",async (e)=> {
+            const delURL = protocol + "//" + rootURL + "/product/cart/delete/" + uid;
+            let cartNos = [];
+            for (const child of $checkboxes) {
+                if (child.checked) {
+                    cartNos.push(child.value);
+                }
+            }
+
+            let data = {cartNos};
+            let options = {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            };
+            await fetch(delURL, options).then(() => {
+                for (const cartNo of cartNos) {
+                    let target = document.getElementById("row-" + cartNo);
+                    console.log("target : " + target.id);
+                    target.remove();
+                }
+            });
+        })
+
+
+
+         $("#orderBtn").click(function (e) {
+             e.preventDefault();
+             let cartIds = [];
+             for (const child of $checkboxes) {
+                 if (child.checked) {
+
+                     let cartNo = child.value;
+                     const data = {
+                         "cartNo": cartNo
+                     }
+                     console.log("data :" + data.toLocaleString());
+                     console.log("data2 :" + data.toString());
+                     cartIds.push(data);
+                 }
+             }
+             console.log(" cartIdes : " + cartIds);
+
+             const jsonData = JSON.stringify(cartIds);
+             window.location.href = protocol + "//" + rootURL + "/product/order?jsonData=" + encodeURIComponent(jsonData);
+             return false;
+         });
+    }); //document.ready end
+</script>
+</html>

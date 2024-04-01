@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="cs">
+      <div class="qna">
+        <nav>
+          <h3>문의하기 답변</h3>
+          <p>
+            HOME > 고객센터 >
+            <strong>문의하기</strong>
+          </p>
+        </nav>
+        <section class="reply">
+          <article>
+            <form th:action="@{/admin/cs/qna/reply}" method="post">
+              <input type="hidden" name="uid" th:value="${#authentication.principal}" />
+              <input type="hidden" name="articleId" th:value="${responseDTO?.articleId}" />
+              <table>
+                <tbody>
+                <tr>
+                  <td>유형</td>
+                  <td>
+                    <p>[[${responseDTO?.menu1}]] - [[${responseDTO?.menu2}]]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>제목</td>
+                  <td>
+                    <p>[[${responseDTO?.title}]]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>내용</td>
+                  <td>
+                    <p>[[${responseDTO?.content}]]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>답변</td>
+                    <th:block th:if="${responseDTO?.status == '검토중'}" >
+                      <td>
+                          <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                      </td>
+                    </th:block>
+                    <th:block th:if="${responseDTO?.status == '답변완료'}">
+                      <td style="font-weight: bold" >
+                        <p style="color: blue">답변완료</p>
+                        <textarea name="content" th:text="${commentResponse?.content}"></textarea>
+                      </td>
+                    </th:block>
+
+                </tr>
+                </tbody>
+              </table>
+              <div>
+                <a href="#" class="btnDelete" id="remove">삭제</a>
+                <input type="submit" class="btnSubmit" value="답변등록">
+                <a th:href="@{/admin/cs/qna/list}" class="btnList">목록</a>
+              </div>
+            </form>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+        ADMINISTRATOR Version 5.4.1.2
+      </p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

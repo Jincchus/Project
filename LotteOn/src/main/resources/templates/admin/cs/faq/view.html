@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="cs">
+      <div class="faq">
+        <nav>
+          <h3>자주묻는질문 보기</h3>
+          <p>
+            HOME > 고객센터 >
+            <strong>자주묻는질문</strong>
+          </p>
+        </nav>
+        <section class="view">
+          <article>
+            <table>
+              <tbody>
+              <tr>
+                <td>
+                  유형
+                </td>
+                <td>[[${responseDTO.menu1}]]-[[${responseDTO.menu2}]]</td>
+              </tr>
+              <tr>
+                <td>
+                  제목
+                </td>
+                <td>[[${responseDTO.title}]]</td>
+              </tr>
+              <tr>
+                <td>
+                  내용
+                </td>
+                <td>[[${responseDTO.content}]]</td>
+              </tr>
+              </tbody>
+            </table>
+            <div>
+              <a th:href="@{/admin/cs/faq/delete(articleId=${responseDTO.articleId})}" class="btnDelete" id="remove">삭제</a>
+              <a th:href="@{/admin/cs/faq/modify(articleId=${responseDTO.articleId})}" class="btnModify">수정</a>
+              <a th:href="@{/admin/cs/faq/list}" class="btnList">목록</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+        ADMINISTRATOR Version 5.4.1.2
+      </p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="app_header">
+    <div class="top">
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/member/login}">로그인</a>
+            <a th:href="@{/member/join}">회원가입</a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a href="#">마이페이지</a>
+            <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+        </div>
+        <div sec:authorize="hasRole('USER')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+        <div sec:authorize="hasRole('SELLER')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+    </div>
+    <div class="logo">
+        <div>
+            <a th:href="@{/index}"><img th:src="@{/images/header_logo.png}" alt="로고"/></a>
+        </div>
+    </div>
+</header>
+<header th:fragment="admin_header">
+    <div>
+        <a th:href="@{/admin/index}" class="logo"><img th:src="@{/images/admin/admin_logo.png}" alt="admin_logo"/></a>
+        <p>
+            <span th:text="|${#authentication.principal}님 반갑습니다.|"></span>
+            <a th:href="@{/}">HOME |</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+            <a href="#">고객센터</a>
+        </p>
+    </div>
+</header>
+<header th:fragment="index_header">
+    <div class="top">
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/member/login}">로그인</a>
+            <a th:href="@{/member/join}">회원가입</a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a href="#">마이페이지</a>
+            <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+        </div>
+        <div sec:authorize="hasRole('USER')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/product/cart/{uid}(uid=${#authentication.principal})}">장바구니</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+        <div sec:authorize="hasRole('SELLER')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/product/cart/{uid}(uid=${#authentication.principal})}">장바구니</a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/product/cart/{uid}(uid=${#authentication.principal})}">장바구니</a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+    </div>
+    <div class="logo">
+        <div>
+            <a href="#"><img th:src="@{/images/header_logo.png}" alt="로고" /></a>
+            <form action="#">
+                <input type="text" name="search" />
+                <button><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="menu">
+        <div>
+            <ul>
+                <li><a href="#">히트상품</a></li>
+                <li><a href="#">추천상품</a></li>
+                <li><a href="#">최신상품</a></li>
+                <li><a href="#">인기상품</a></li>
+                <li><a href="#">할인상품</a></li>
+            </ul>
+            <ul>
+                <li><a th:href="@{/notice/list}">공지사항</a></li>
+                <li><a th:href="@{/faq/list}">자주묻는질문</a></li>
+                <li><a th:href="@{/qna/list}">문의하기</a></li>
+                <li><a th:href="@{/cs/index}">고객센터</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<header th:fragment="product_header">
+    <div class="top">
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/member/login}">로그인</a>
+            <a th:href="@{/member/join}">회원가입</a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a href="#">마이페이지</a>
+            <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+        </div>
+        <div sec:authorize="hasRole('USER')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+        <div sec:authorize="hasRole('SELLER')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/member/mypage}" th:text="|${#authentication.principal} 님 환영합니다.|"></a>
+            <a th:href="@{/admin/index}">관리자 페이지</a>
+            <a th:href="@{/member/logout}">로그아웃</a>
+        </div>
+    </div>
+    <div class="logo">
+        <div>
+            <a th:href="@{/}"><img th:src="@{/images/header_logo.png}" alt="로고" /></a>
+            <form action="#">
+                <input type="text" name="search" />
+                <button><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="menu">
+        <div>
+            <ul>
+                <li><a href="#">히트상품</a></li>
+                <li><a href="#">추천상품</a></li>
+                <li><a href="#">최신상품</a></li>
+                <li><a href="#">인기상품</a></li>
+                <li><a href="#">할인상품</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">쿠폰존</a></li>
+                <li><a href="#">사용후기</a></li>
+                <li><a href="#">개인결제</a></li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+</body>
+</html>

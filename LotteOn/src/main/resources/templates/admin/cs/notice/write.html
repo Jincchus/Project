@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head::admin_head}">
+</head>
+<body>
+<div id="admin-wrapper">
+  <header th:replace="~{fragments/header::admin_header}">
+  </header>
+  <script>
+    $(function(){
+
+
+    $('.btnSubmit').click(function (e){
+      e.preventDefault();
+      const menu1 = $('#menu1').val();
+      const menu2 = $('#menu2').val();
+
+      var confirm= true;
+      if(menu1==0){
+        alert('1차 카테고리를 선택하시오.');
+        confirm = false;
+      }else if(menu2==0){
+        alert('2차 카테고리를 선택하시오.');
+        confirm = false;
+      }
+      if(confirm==true){
+        $('#sendForm').attr("th:action","@{/admin/cs/notice/write}");
+        $('#sendForm').submit();
+      }
+
+    });//btnSubmit click end
+
+    });//end
+  </script>
+
+
+  <main>
+    <aside th:replace="~{fragments/admin/aside::admin_aside}">
+    </aside>
+    <section id="cs">
+      <div class="faq">
+        <nav>
+          <h3>공지사항 쓰기</h3>
+          <p>
+            HOME > 고객센터 >
+            <strong>공지사항</strong>
+          </p>
+        </nav>
+        <section class="write">
+          <article>
+            <form action="#" id="sendForm" method="post">
+              <input type="text" name="uid" th:value="${#authentication.principal}" />
+              <input type="text" name="cate" value="notice"/>
+              <table>
+                <tbody>
+                <tr>
+                  <td>문의유형</td>
+                  <td>
+                    <select name="menu1" id="menu1">
+                      <option value="0">1차 선택</option>
+                      <option value="고객서비스">고객서비스</option>
+                      <option value="안전거래">안전거래</option>
+                      <option value="위해상품">위해상품</option>
+                      <option value="이벤트당첨">이벤트당첨</option>
+                    </select>
+                    <select name="menu2" id="menu2" class="choose">
+                      <option value="0">2차 선택</option>
+                      <option value="안내">안내</option>
+                      <option value="발표">발표</option>
+                      <option value="점검">점검</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>문의제목</td>
+                  <td>
+                    <input type="text" name="title" placeholder="제목을 입력하세요.">
+                  </td>
+                </tr>
+                <tr>
+                  <td>문의내용</td>
+                  <td>
+                    <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div>
+                <a th:href="@{/admin/cs/notice/list}" class="btnList">취소하기</a>
+                <input type="submit" class="btnSubmit" value="등록하기">
+              </div>
+            </form>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p>
+        Copyright ⓒkmarket.co.kr All rights reserved. KMARKET
+        ADMINISTRATOR Version 5.4.1.2
+      </p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
