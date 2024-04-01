@@ -1,4 +1,3 @@
-[kmarket_readMe_code]
 
 <div align=center>
   
