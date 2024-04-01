@@ -1,6 +1,6 @@
 <div align=center>
   
-  ![image](https://github.com/bllor/Project2023/assets/136154061/bebfd6ff-c7af-4240-ae0b-db49c65f8a55)
+  ![m-cut](https://github.com/Jincchus/Project/assets/136421962/e434bed7-2cfe-4e94-8305-5cd3e66501ec)
 
 </div>
 
