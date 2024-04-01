@@ -30,7 +30,7 @@
 
 ### 🌟프로젝트 메인 페이지<br>
 
-![m-cut](https://github.com/Jincchus/Project/assets/136421962/e434bed7-2cfe-4e94-8305-5cd3e66501ec)
+![MyBank_Jsp](https://github.com/Jincchus/Project/assets/136421962/7ae8a11a-4929-41f4-b362-50bf7e1bcc57)
 
 
 ------
