@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyber.university.repository.interfaces.ScheduleRepository">
+	
+	<insert id="insertScheduleForm">
+		<![CDATA[insert into cu_schedule
+		(staff_id, start_day, end_day, information)
+		values 
+		(#{staffId}, #{startDay}, #{endDay}, #{information})]]>
+	</insert>
+	
+	<select id="selectSchedule" resultType="com.cyber.university.repository.model.Schedule">
+	    <![CDATA[SELECT id, staff_id, TO_CHAR(start_day, 'MM-dd') AS start_day, TO_CHAR(end_day, 'MM-dd') AS end_day,
+       information
+FROM cu_schedule
+ORDER BY start_day]]>
+	</select>
+	
+	<!-- 일정 상세페이지 -->
+	<select id="selectScheduleById" resultType="com.cyber.university.dto.ScheduleDto">
+		<![CDATA[SELECT id, staff_id, DATE_FORMAT(start_day,'%m-%d') AS start_mday, 
+		DATE_FORMAT(end_day,'%m-%d') AS  end_mday, staff_id,
+		start_day, end_day, information, YEAR(start_day) as years
+		FROM cu_schedule
+		WHERE id = #{id}]]>
+	</select>
+	
+	<!-- 월마다 일정이 몇 개인지 조회 -->
+	<select id="selectScheduleInMonth" resultType="com.cyber.university.dto.ScheduleDto">
+		<![CDATA[select month, count(month) AS sum
+		from cu_schedule
+		GROUP BY month
+		HAVING COUNT(month) > 1]]>
+	</select>
+	
+	<select id="selectListByMonth" resultType="com.cyber.university.repository.model.Schedule">
+		<![CDATA[select * from cu_schedule where month(start_day) = #{month} or month(end_day) = #{month}]]>
+	</select>
+
+	<update id="updateSchedule">
+		<![CDATA[update cu_schedule
+		set start_day = #{startDay}, end_day = #{endDay}, information = #{information}
+		where id = #{id}]]>
+	</update>	
+	
+	<delete id="deleteSchedule">
+		<![CDATA[delete from cu_schedule where id = #{id}]]>
+	</delete>
+</mapper>
