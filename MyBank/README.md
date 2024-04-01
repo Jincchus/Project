@@ -28,7 +28,7 @@
 
 ------
 
-### 🎯프로젝트 결과<br>
+### 🎯프로젝트에서 얻은 것<br>
 
 - OAUTH2.0 API 구현
 - Validation 사용
@@ -37,7 +37,6 @@
 - HttpHeader와 HttpBody에 대한 이해
 - SESSION에 대한 이해
 - 인터셉터와 ExceptionHandler 사용
-
 
 ------
 
