@@ -2,7 +2,7 @@
 # Project_2024
 |  |MyBank|GuideYou|CyberUniversity|
 |:--------------------|:----|:----|:-----|
-|메인|![MyBank_Jsp](https://github.com/Jincchus/Project/assets/136421962/00b337ce-84da-40b6-8427-7542c6e47edd)|![GuideYou_Jsp_이미지크기수정](https://github.com/Jincchus/Project/assets/136421962/70ece31b-d1df-4662-b064-0c61fb28eba4)|![cu (1) (1)](https://github.com/Jincchus/Project/assets/136421962/2a7195ac-6510-4262-8748-a00b20b44012)
+|메인|![MyBank_Jsp](https://github.com/Jincchus/Project/assets/136421962/07fb3cfe-531b-423b-a332-532b0a6d2be2)|![GuideYou_Jsp_이미지크기수정](https://github.com/Jincchus/Project/assets/136421962/70ece31b-d1df-4662-b064-0c61fb28eba4)|![cu (1) (1)](https://github.com/Jincchus/Project/assets/136421962/2a7195ac-6510-4262-8748-a00b20b44012)
 
 |
 |소개|은행 웹 어플리케이션|여행 플랜 판매 플랫폼|학사관리 프로젝트|
