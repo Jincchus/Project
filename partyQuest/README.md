@@ -25,9 +25,6 @@
 
 ### 🎱프로젝트 결과<br>
 -국비 팀프로젝트 1위<br>
--[PARTY_QUEST_결과보고서](https://github.com/Phoenix-Argo/partyquest/files/13626327/PARTY_QUEST_.pdf): 개발한 서비스의 결과 보고서 입니다.<br>
--[PARTY_QUEST_발표PPT](https://github.com/Phoenix-Argo/partyquest/files/13626330/party_quest_PPT.pdf): 개발한 서비스의 발표 보고서 입니다.
-
 
 ------
 ### 🌝프로젝트 주요 기능 소개<br>
